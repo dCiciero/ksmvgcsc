@@ -1,0 +1,10 @@
+body{
+    background-color:#cccac9;
+}
+.navbar{
+    background-color: rgb(15, 128, 15)!important ;
+}
+.navbar-dark{
+    background-color: rgb(15, 128, 15) !important ;
+    border-color: rgb(15, 128, 15) !important ;
+}

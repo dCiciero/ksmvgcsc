@@ -21,12 +21,18 @@
             <div class="collapse navbar-collapse" id="navbar_ksmvgc">
                 <ul class="navbar-nav mr-auto">
                     <li class="navbar-item active"><a class="nav-link" href="">Home<span class="sr-only">(current)</span></a></li>
-                    <li class="navbar-item" ><a class="nav-link" href="{{url_for('membership')}}">Membership</a></li>
-                    <li class="navbar-item" ><a class="nav-link" href="">Gallery</a></li>
-                    <li class="navbar-item" ><a class="nav-link" href="">Zones</a></li>
+                    <li class="navbar-item" ><a class="nav-link" href="">Personal Record</a></li>
+                    <li class="navbar-item" ><a class="nav-link" href="">Members Directory</a></li>
                     <li class="navbar-item" ><a class="nav-link" href="">Executives</a></li>
                 </ul>
-                
+                <ul class="navbar-nav ml-auto">
+                    {% if current_user.is_anonymous %}
+                    <!-- <li class="navbar-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li> -->
+                    {% else %}
+                      <li class="navbar-item"><a class="nav-link" href="#">Welcome {{ current_user.username }}</a></li>
+                      <li class="navbar-item"><a class="nav-link" href="#">{{ url_for('logout') }}</a></li>
+                    {% endif %}
+                  </ul>
             </div>
         </div>
     </nav>
