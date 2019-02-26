@@ -6,5 +6,5 @@ def make_shell_context():
     return {"db": db, "Access": Access, "Membership": Membership}
 
 if __name__ == "__main__":
-    with app.app_context():
+    with vgcsc.app_context():
         app.run(debug=True)

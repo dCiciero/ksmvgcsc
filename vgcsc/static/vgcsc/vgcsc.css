@@ -1,5 +1,6 @@
 body{
-    background-color:#cccac9;
+    /* background-color:#cccac9; */
+    background-image: url('../images/ksmbadge.jpg')
 }
 .navbar{
     background-color: rgb(15, 128, 15)!important ;
@@ -8,3 +9,10 @@ body{
     background-color: rgb(15, 128, 15) !important ;
     border-color: rgb(15, 128, 15) !important ;
 }
+.navbar-brand img{
+    border: 1 solid red !important;
+}
+ #ksmvgc_label{
+     margin-left: 5px;
+     color: khaki;
+ }

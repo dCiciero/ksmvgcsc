@@ -4,6 +4,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
+# lead@devpro.org/goo123
 
 class Access(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -55,3 +56,18 @@ class Carousel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text(), nullable=False)
     caption = db.Column(db.String(120), nullable=True)
+
+class Executive(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(150), nullable=False)
+    post = db.Column(db.String(50), nullable=False)
+    elected_date = db.Column(db.Date, index=True, default=datetime.utcnow)
+    where = db.Column(db.String(5))
+
+class PastExecutive(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(150), nullable=False)
+    post = db.Column(db.String(50), nullable=False)
+    start_date = db.Column(db.Date, index=True, default=datetime.utcnow)
+    end_date = db.Column(db.Date, index=True, default=datetime.utcnow)
+    where = db.Column(db.String(5))

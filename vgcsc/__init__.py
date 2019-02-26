@@ -14,6 +14,7 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
 
-from . import models, routes
+from vgcsc import routes, models
+# . import models, routes
 
 # app.register_blueprint(routes.bp)

@@ -4,9 +4,9 @@ from flask import (
 from flask_login import (
     current_user, login_user, logout_user, login_required
 )
-# from werkzeug.urls import url_parse
+from werkzeug.urls import url_parse
 from vgcsc import db, app
-from vgcsc.models import Access, Membership, Profile
+from vgcsc.models import Access#, Membership, Profile
 
 # bp = Blueprint('routes', __name__)
 
@@ -20,8 +20,16 @@ def login():
         return redirect(url_for('membership'))
     if request.method == "POST":
         email = request.form['email']
+        password = request.form['password']
         user = Access.query.filter_by(email=email).first()
-        # if user is None or user
+        if user is None or not user.check_password(password):
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
+        login_user(user)
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('membership')
+        return redirect(next_page)
     
     return render_template('vgcsc/login.html')
 
@@ -43,3 +51,8 @@ def membership():
         flash("You have to login in to access this page")
         return redirect(url_for('login'))
     
+
+# @app.route('/executives', methods=["GET", "POST"])
+# def exco():
+#     excos = None
+#     return render_template('vgcsc/executives.html', excos=excos)
