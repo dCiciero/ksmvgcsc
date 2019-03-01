@@ -13,7 +13,7 @@ class Access(UserMixin, db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
 
     def __repr__(self):
-        return '<User {}>'.format(self.username)
+        return '<User {}, Email {}>'.format(self.username, self.email)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -58,13 +58,17 @@ class Carousel(db.Model):
     caption = db.Column(db.String(120), nullable=True)
 
 class Executive(db.Model):
+    __tablename__ = "executives"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), nullable=False)
     post = db.Column(db.String(50), nullable=False)
     elected_date = db.Column(db.Date, index=True, default=datetime.utcnow)
-    where = db.Column(db.String(5))
+    where = db.Column(db.String(5), nullable=False)
+    alias = db.Column(db.String(10), nullable=False, default="")
+    
 
 class PastExecutive(db.Model):
+    __tablename__ = "pastexecutives"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), nullable=False)
     post = db.Column(db.String(50), nullable=False)

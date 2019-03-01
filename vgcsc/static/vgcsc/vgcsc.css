@@ -1,3 +1,8 @@
+@media (max-width: 499px){
+    #exco_head::before{
+        content: "Executives"
+    }
+}
 body{
     /* background-color:#cccac9; */
     background-image: url('../images/ksmbadge.jpg')
@@ -5,14 +10,24 @@ body{
 .navbar{
     background-color: rgb(15, 128, 15)!important ;
 }
-.navbar-dark{
-    background-color: rgb(15, 128, 15) !important ;
-    border-color: rgb(15, 128, 15) !important ;
+.navbar-dark .navbar-nav{
+    background-color:rgb(15, 128, 15) !important ;
+    border-color: red; /*rgb(15, 128, 15) !important ;*/
 }
-.navbar-brand img{
+/* .navbar-dark .navbar-brand img{
     border: 1 solid red !important;
+    margin-left: 5em;
+} */
+
+#exco_head{
+    text-align: center;
+    background-color: green;
+    color: antiquewhite;
 }
  #ksmvgc_label{
      margin-left: 5px;
      color: khaki;
+     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+     font-weight: bold;
+     /* text-shadow: 3px 2px; */
  }
