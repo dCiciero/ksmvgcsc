@@ -1,2 +1,1 @@
-web: flask db upgrade; 
-gunicorn vgcsc:vgcsc; 
+web: flask db upgrade; gunicorn vgcsc:vgcsc; 
