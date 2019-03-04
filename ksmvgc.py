@@ -8,5 +8,5 @@ def make_shell_context():
         "PastExecutive":PastExecutive, "Config": Config}
 
 if __name__ == "__main__":
-    with vgcsc.app_context():
-        app.run(debug=True)
+   # with vgcsc.app_context():
+    app.run(debug=True)

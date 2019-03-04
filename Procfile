@@ -1,1 +1,1 @@
-web: flask db upgrade; 
+web: flask db upgrade, python ksmvgc.py; 
