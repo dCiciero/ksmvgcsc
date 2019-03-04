@@ -1,1 +1,1 @@
-web: flask db upgrade; gunicorn KSMVGC:'ksmvgc.py'
+web: flask db upgrade; 
