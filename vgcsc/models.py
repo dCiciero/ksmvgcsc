@@ -7,6 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # lead@devpro.org/goo123
 
 class Access(UserMixin, db.Model):
+    __tablename__="access"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, index=True, nullable=False)
     email = db.Column(db.String(120), nullable=False, index=True, unique=True)
@@ -26,6 +27,7 @@ def load_user(id):
     return Access.query.get(int(id))
 
 class Profile(db.Model):
+    __tablename__ = "profiles"
     id = db.Column(db.Integer, primary_key=True)
     username=db.Column(db.String(50), nullable=False)
     first_name=db.Column(db.String(50), nullable=False)
@@ -40,6 +42,7 @@ class Profile(db.Model):
     work_address = db.Column(db.String(200), nullable=True)
 
 class Membership(db.Model):
+    __tablename__ = "memberships"
     id = db.Column(db.Integer, primary_key=True)
     first_name=db.Column(db.String(50), nullable=False)
     last_name=db.Column(db.String(50), nullable=False)
@@ -65,6 +68,7 @@ class Executive(db.Model):
     elected_date = db.Column(db.Date, index=True, default=datetime.utcnow)
     where = db.Column(db.String(5), nullable=False)
     alias = db.Column(db.String(10), nullable=False, default="")
+    display_order = db.Column(db.Integer)
     
 
 class PastExecutive(db.Model):
@@ -75,3 +79,10 @@ class PastExecutive(db.Model):
     start_date = db.Column(db.Date, index=True, default=datetime.utcnow)
     end_date = db.Column(db.Date, index=True, default=datetime.utcnow)
     where = db.Column(db.String(5))
+
+class News(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    topic = db.Column(db.String(120), nullable=False)
+    content = db.Column(db.Text(), nullable=False)
+    date_created = db.Column(db.Date, index=True, default=datetime.utcnow)
+    posted_by = db.Column(db.Integer, db.ForeignKey('access.id'), nullable=False)

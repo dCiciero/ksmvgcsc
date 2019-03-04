@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <p>VGC Sub-council has two zones viz zone 1 and zone 2</p>
+            <div class="accordion" id="zonesAccordion">
+                    <div class="card">
+                      <div class="card-header" id="zoneOne">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Zone 1
+                          </button>
+                        </h2>
+                      </div>
+                
+                      <div id="collapseOne" class="collapse show" aria-labelledby="zoneOne" data-parent="#zonesAccordion">
+                        <div class="card-body">
+                          <ul class="list-group">
+                              <li class="list-group-item">Zonal Leader - <small class="text-muted">WB. Anthony Ukairo</small></li>
+                              <li class="list-group-item">Zonal Secretary - <small class="text-muted">WB. Nmmadi Ekeh</small></li>
+                              <!-- <li class="list-group-item">Zonal Leader - <small class="text-muted">WB. Anthony Ukairo</small></li>
+                              <li class="list-group-item">Zonal Leader - <small class="text-muted">WB. Anthony Ukairo</small></li>
+                              <li class="list-group-item">Zonal Leader - <small class="text-muted">WB. Anthony Ukairo</small></li>
+                              <li class="list-group-item">Zonal Leader - <small class="text-muted">WB. Anthony Ukairo</small></li> -->
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="zoneTwo">
+                        <h2 class="mb-0">
+                          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Zone 2
+                          </button>
+                        </h2>
+                      </div>
+                      <div id="collapseTwo" class="collapse" aria-labelledby="zoneTwo" data-parent="#zonesAccordion">
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">Zonal Leader - <small class="text-muted">WB. Emmanuel Ikhazobo</small></li>
+                                <li class="list-group-item">Zonal Secretary - <small class="text-muted">WB. Philip Jatto</small></li>
+                                <li class="list-group-item">Zonal Fin. Secretary - <small class="text-muted">WB. Oliver Ugwu</small></li>
+                                <!-- <li class="list-group-item">Zonal Leader - <small class="text-muted">WB. Anthony Ukairo</small></li>
+                                <li class="list-group-item">Zonal Leader - <small class="text-muted">WB. Anthony Ukairo</small></li>
+                                <li class="list-group-item">Zonal Leader - <small class="text-muted">WB. Anthony Ukairo</small></li> -->
+                            </ul>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+        </div>
+    </div>
+
+    
+{% endblock %}

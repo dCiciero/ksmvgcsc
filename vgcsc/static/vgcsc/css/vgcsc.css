@@ -1,0 +1,118 @@
+body, html{
+    height: 100%;
+    background-color: #efefef;
+    /* background-image: url('../images/ksmlogo_small.jpg');
+    background-repeat: repeat;
+    opacity: .6; */
+    /* filter: blur(8px);
+    -webkit-filter: blur(8px); */
+}
+*{
+    box-sizing: border-box;
+}
+
+/* width */
+#history_pane::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar:hover {
+      width: 15px;
+    }
+  
+  /* Track */
+  #history_pane::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  #history_pane::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  #history_pane::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+    width: 15px;
+  }
+
+/* Index page */
+#history_pane{
+    max-height: 300px;
+    overflow: scroll;
+}
+
+/* end index page */
+
+@media (min-width: 500px){
+    #exco_head::before{
+        content: "The Current Executives of VGC Sub-Council"
+    }
+}
+@media (max-width: 499px){
+    #exco_head::before{
+        content: "Current Executives"
+    }
+}
+/* .container{
+    
+    z-index: 200 ;
+} */
+/* .navbar{
+    background-color: rgb(15, 128, 15)!important ;
+}
+.navbar-dark .navbar-nav{
+    background-color:rgb(15, 128, 15) !important ;
+    border-color: red; /*rgb(15, 128, 15) !important ;*
+} */
+
+/* #indicators{
+    width: 500px;
+} */
+/* .navbar-dark .navbar-brand img{
+    border: 1 solid red !important;
+    margin-left: 5em;
+} */
+
+#gallery_card{
+    /* border: 1px solid red; */
+    border-radius: 30px;
+    /* background-color: aliceblue; */
+    /* padding: 20px;  */
+    /* width: 200px;
+    height: 250px;  */
+}
+#gallery_card img{
+    /* border: 1px solid red; */
+    border-radius: 30px;
+    /* padding: 20px;  */
+    /* width: 200px;
+    height: 250px;  */
+}
+/* Executive Page */
+#exco_head{
+    text-align: center;
+    background-color: green;
+    color: antiquewhite;
+    width: 40rem; 
+    margin: 0 auto; 
+    margin-bottom: 10px; 
+    text-align:center; 
+}
+
+#exco_img_card, #exco_photo{
+    border-radius: 25px;
+    /* background-color: brown; */
+    /* color: #ffffff; */
+}
+
+/* #exco_photo{
+    border-radius: 25px;
+} */
+/* End of Executive page */
+ #ksmvgc_label{
+     margin-left: 5px;
+     color: khaki;
+     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+     font-weight: bolder;
+     /* text-shadow: 3px 2px; */
+ }
