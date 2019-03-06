@@ -57,7 +57,7 @@ class Membership(db.Model):
 
 class Carousel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text(), nullable=False)
+    name = db.Column(db.String(50), nullable=False)
     caption = db.Column(db.String(120), nullable=True)
 
 class Executive(db.Model):
@@ -83,6 +83,6 @@ class PastExecutive(db.Model):
 class News(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     topic = db.Column(db.String(120), nullable=False)
-    content = db.Column(db.Text(), nullable=False)
+    content = db.Column(db.Text, nullable=False)
     date_created = db.Column(db.Date, index=True, default=datetime.utcnow)
     posted_by = db.Column(db.Integer, db.ForeignKey('access.id'), nullable=False)
