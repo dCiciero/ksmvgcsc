@@ -12,6 +12,7 @@ from vgcsc.models import Access, Membership, Profile, Executive, PastExecutive
 # bp = Blueprint('routes', __name__)
 
 @app.route('/', methods=("GET", "POST"))
+@app.route('/index', methods=("GET", "POST"))
 def index():
     return render_template('vgcsc/index.html')
 
@@ -29,7 +30,8 @@ def login():
         login_user(user)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('membership')
+            next_page = url_for('index')
+        print(user)
         return redirect(next_page)
     
     return render_template('vgcsc/login.html')
@@ -39,14 +41,17 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@login_required
 @app.route('/membership', methods=["GET", "POST"])
+@login_required
 def membership():
     if current_user.is_authenticated:
         if request.method == "POST":
             flash("Record saved")
         else:
-            return render_template("vgcsc/members.html")
+            id = current_user.id
+            member = Membership.query.filter_by(access_id=id)
+            print(f'Current user is {current_user.id}')
+            return render_template("vgcsc/members.html", member=member)
 
     else:
         flash("You have to login in to access this page")
@@ -100,4 +105,12 @@ def gallery():
 
 @app.route('/zones')
 def zones():
+    return render_template('vgcsc/zones.html')
+
+@app.route('/personal')
+def personal():
+    return render_template('vgcsc/zones.html')
+
+@app.route('/directory')
+def directory():
     return render_template('vgcsc/zones.html')

@@ -13,6 +13,7 @@
     <header>
       {% block header %}{% endblock %}
     </header>
+    <br>
     {% for message in get_flashed_messages() %}
       <div class="alert alert-danger">
         <p class="lead">{{ message }}</p>

@@ -53,6 +53,7 @@ class Membership(db.Model):
     initiation_date = db.Column(db.Date, index=True, default=datetime.utcnow)
     investiture_date = db.Column(db.Date, index=True, default=datetime.utcnow)
     home_town = db.Column(db.String(120), nullable=True)
+    access_id = db.Column(db.Integer, db.ForeignKey('access.id'), nullable=False)
 
 
 class Carousel(db.Model):

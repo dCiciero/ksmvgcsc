@@ -91,12 +91,12 @@ body, html{
 /* Executive Page */
 #exco_head{
     text-align: center;
-    background-color: green;
-    color: antiquewhite;
-    width: 40rem; 
+    /* background-color: green; */
+    color: rgb(230, 154, 56);
+    /* width: 40rem;  */
     margin: 0 auto; 
-    margin-bottom: 10px; 
-    text-align:center; 
+    margin-bottom: 20px; 
+    /* text-align:center;  */
 }
 
 #exco_img_card, #exco_photo{

@@ -1,4 +1,36 @@
 {% extends 'base_member.html' %}
 <section>
-    <h2>This is members zone</h2>
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h4>Member zone</h4>
+            {% if member != None %}
+            <div class="form-group">
+                <label for="fname">First Name:</label>
+            </div>
+            <div class="form-group">
+                <label for="onames">Other Names:</label>
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name</label>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+            </div>
+            <div class="form-group">
+                <label for="initiateDate">Date Initiated</label>
+            </div>
+            <div class="form-group">
+                <label for="oldSC">Previous Sub-Council</label>
+            </div>
+            {% endif %}
+
+
+        </div>
+    </div>
+{% endblock %}
 </section>
