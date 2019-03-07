@@ -1,9 +1,10 @@
 body, html{
     height: 100%;
-    background-color: #efefef;
-    /* background-image: url('../images/ksmlogo_small.jpg');
+    /* background-color: #efefef; */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-image: url('../../images/ksm_blurred2_mini.png');
     background-repeat: repeat;
-    opacity: .6; */
+    /*opacity: .6; */
     /* filter: blur(8px);
     -webkit-filter: blur(8px); */
 }
