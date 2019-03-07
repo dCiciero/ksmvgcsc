@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Home Page{% endblock %}
 {% block carousel %}
+
     <div id="indicators" class="row carousel slide carousel-fade" data-ride="carousel">
       <!-- <div class="col-md-2"></div> -->
       <div class="carousel-inner col-xl-7 col-md-12 col-sm-12 ">
@@ -11,16 +12,16 @@
             <li data-target="#indicators" data-slide-to="3"></li>
           </ol>
         <div class="carousel-item active">
-          <img src="../../static/images/inaug3.JPG" class="d-block w-100" style="height:350px" alt="g">
+          <img src="../../static/images/inaug3.JPG" class="d-block w-100 img-thumbnail" style="height:350px" alt="g">
         </div>
         <div class="carousel-item">
-          <img src="../../static/images/inaug2.JPG" class="d-block w-100" style="height:350px" alt="g">
+          <img src="../../static/images/inaug2.JPG" class="d-block w-100 img-thumbnail" style="height:350px" alt="g">
         </div>
         <div class="carousel-item">
-          <img src="../../static/images/inaug1.JPG" class="d-block w-100" style="height:350px" alt="h">
+          <img src="../../static/images/inaug1.JPG" class="d-block w-100 img-thumbnail" style="height:350px" alt="h">
         </div>
         <div class="carousel-item">
-          <img src="../../static/images/inaug4.JPG" class="d-block w-100" style="height:350px" alt="h">
+          <img src="../../static/images/inaug4.JPG" class="d-block w-100 img-thumbnail" style="height:350px" alt="h">
         </div>
         <a class="carousel-control-prev" href="#indicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -35,7 +36,7 @@
         <div class="card bg-light" style="height:350px;">
           <div class="card-body">
             <!-- <h5 class="card-title" style="text-align:center;" >KSM Current Affairs</h5> -->
-            <span class="card-title "></span><b>KSM Current Affairs</b>
+            <span class="card-title "></span><b>KSM VGC News</b>
             <div class="list-group">
                 <a href="#" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between bg-warning">
@@ -65,7 +66,8 @@
       </div>
       
     </div> <!-- end carousel div, row id=indicators -->
-  
+    
+   
 {% endblock %}
 {% block content %}
 <div class="row">
