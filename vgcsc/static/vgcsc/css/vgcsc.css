@@ -1,24 +1,37 @@
 body, html{
     height: 100%;
-    /* background-color: #efefef; */
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    background-image: url('../../images/ksm_blurred2_mini.png');
+    background-color: #333333 ;
+    font-family: Arial, Helvettica, sans-serif;  /* "Times New Roman", Times, serif;*/
+    /* background-image: url('../../images/ksm_blurred2_mini.png'); */
     background-repeat: repeat;
     /*opacity: .6; */
-    /* filter: blur(8px);
+    /* filter: blur(8px); www.w3.org/TR/html5-author/
     -webkit-filter: blur(8px); */
 }
 *{
     box-sizing: border-box;
 }
+.content {
+    height: 100%;
+}
+/* img {
+    box-shadow: 3px 3px 5px 1px #cccccc;
+    #eeff99 light green
+    #696
+} */
+
+/* Index page */
+#history_pane{
+    padding: 5px;
+    height: 300px;
+    overflow-y: scroll;
+}
+
 
 /* width */
 #history_pane::-webkit-scrollbar {
     width: 5px;
   }
-  ::-webkit-scrollbar:hover {
-      width: 15px;
-    }
   
   /* Track */
   #history_pane::-webkit-scrollbar-track {
@@ -36,35 +49,21 @@ body, html{
     width: 15px;
   }
 
-/* Index page */
-#history_pane{
-    max-height: 300px;
-    overflow: scroll;
+  #news{
+      line-height: 1em;
+  }
+.news_head{
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
 }
+
+  .news_title{
+      font-weight: 600;
+  }
 
 /* end index page */
 
-@media (min-width: 500px){
-    #exco_head::before{
-        content: "The Current Executives of VGC Sub-Council"
-    }
-}
-@media (max-width: 499px){
-    #exco_head::before{
-        content: "Current Executives"
-    }
-}
-/* .container{
-    
-    z-index: 200 ;
-} */
-/* .navbar{
-    background-color: rgb(15, 128, 15)!important ;
-}
-.navbar-dark .navbar-nav{
-    background-color:rgb(15, 128, 15) !important ;
-    border-color: red; /*rgb(15, 128, 15) !important ;*
-} */
 
 /* #indicators{
     width: 500px;
@@ -90,6 +89,16 @@ body, html{
     height: 250px;  */
 }
 /* Executive Page */
+@media (min-width: 500px){
+    #exco_head::before{
+        content: "The Current Executives of VGC Sub-Council"
+    }
+}
+@media (max-width: 499px){
+    #exco_head::before{
+        content: "Current Executives"
+    }
+}
 #exco_head{
     text-align: center;
     /* background-color: green; */
@@ -116,4 +125,34 @@ body, html{
      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
      font-weight: bolder;
      /* text-shadow: 3px 2px; */
+ }
+
+ /* Memeber Page */
+#member_page{
+    max-height: 600px;
+    overflow-y: scroll;
+}
+#member_page::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  #member_page::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  #member_page::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  #member_page::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+    width: 15px;
+  }
+ /* end of member page */
+
+ #footer {
+     margin-top: 30px;
  }

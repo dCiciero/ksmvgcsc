@@ -49,9 +49,11 @@ class Membership(db.Model):
     other_names=db.Column(db.String(75), nullable=True)
     email = db.Column(db.String(120), nullable=False)
     address = db.Column(db.String(200), nullable=False)
+    phone = db.Column(db.String(20), nullable=True)
     birth_date = db.Column(db.Date, index=True, default=datetime.utcnow)
     initiation_date = db.Column(db.Date, index=True, default=datetime.utcnow)
     investiture_date = db.Column(db.Date, index=True, default=datetime.utcnow)
+    state_of_origin = db.Column(db.String(20), nullable=True)
     home_town = db.Column(db.String(120), nullable=True)
     access_id = db.Column(db.Integer, db.ForeignKey('access.id'), nullable=False)
 

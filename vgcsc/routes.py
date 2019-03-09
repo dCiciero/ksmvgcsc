@@ -49,8 +49,9 @@ def membership():
             flash("Record saved")
         else:
             id = current_user.id
-            member = Membership.query.filter_by(access_id=id)
-            print(f'Current user is {current_user.id}')
+            member = Membership.query.filter_by(access_id=id).first()
+            # print(f'Current user is {current_user.id}')
+            # print(f'member is {member}')
             return render_template("vgcsc/members.html", member=member)
 
     else:
@@ -71,7 +72,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
@@ -109,8 +110,19 @@ def zones():
 
 @app.route('/personal')
 def personal():
-    return render_template('vgcsc/zones.html')
+    return render_template('vgcsc/members.html')
 
 @app.route('/directory')
+@login_required
 def directory():
-    return render_template('vgcsc/zones.html')
+    if current_user.is_authenticated:
+        if request.method == "GET":
+            members = Profile.query.all()
+            # print(f'Current user is {current_user.id}')
+            # print(f'member is {members}')
+            return render_template('vgcsc/directory.html')
+
+    else:
+        flash("You have to login in to access this page")
+        return redirect(url_for('login'))
+    

@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse" id="navbar_ksmvgc">
                 <ul class="navbar-nav mr-auto">
                     <!-- <li class="navbar-item active"><a class="nav-link" href="">Home<span class="sr-only">(current)</span></a></li> -->
-                    <li class="navbar-item active" ><a class="nav-link" href="{{ url_for('personal') }}">Personal Record</a></li>
+                    <li class="navbar-item active" ><a class="nav-link" href="{{ url_for('membership') }}">Personal Record</a></li>
                     <li class="navbar-item" ><a class="nav-link" href="{{ url_for('directory') }}">Members Directory</a></li>
                     <!-- <li class="navbar-item" ><a class="nav-link" href="">Executives</a></li> -->
                 </ul>
@@ -56,8 +56,17 @@
     {% block content %}{% endblock %}
   </div>
 </section>
-
+<div id="footer" class="container">
+    <div class="card">
+      <div class="card-body bg-light">
+          <small class="text-muted">&copy 2019 Knights of St. Mulumba VGC Sub Council.</small>
+      </div>
+    </div>
+</div>
 <!-- Bootstrap related JavaScript -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<script src="{{ url_for('.static', filename='vgcsc/js/jquery-3.3.1.slim.min.js') }}"></script>
+<script src="{{ url_for('.static', filename='vgcsc/js/bootstrap.min.js') }}"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
