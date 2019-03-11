@@ -1,3 +1,19 @@
+@media (min-width: 600px){
+    #exco_head::before{
+        content: "The Current Executives of VGC Sub-Council"
+    }
+    #banner_head::before{
+        content: "Knights of St. Mulumba Victoria Garden City (VGC) Sub Council"
+    }
+}
+@media (max-width: 599px){
+    #exco_head::before{
+        content: "Current Executives"
+    }
+    #banner_head::before{
+        content: "KSM VGC Sub Council"
+    }
+}
 body, html{
     height: 100%;
     background-color: #333333 ;
@@ -13,6 +29,17 @@ body, html{
 }
 .content {
     height: 100%;
+}
+#banner{
+    height: 80px;
+    border: 1px #696 solid;
+    background-color: #f1f3e6;
+    
+}
+#banner p{
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-size: 1.5rem;
 }
 /* img {
     box-shadow: 3px 3px 5px 1px #cccccc;
@@ -89,16 +116,7 @@ body, html{
     height: 250px;  */
 }
 /* Executive Page */
-@media (min-width: 500px){
-    #exco_head::before{
-        content: "The Current Executives of VGC Sub-Council"
-    }
-}
-@media (max-width: 499px){
-    #exco_head::before{
-        content: "Current Executives"
-    }
-}
+
 #exco_head{
     text-align: center;
     /* background-color: green; */

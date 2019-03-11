@@ -1,0 +1,23 @@
+{% extends 'base_member.html' %}
+{% block content %}
+    {% if filename %}
+    <label for="filename">{{ filename }}</label>
+    {% else %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title text-center">Upload Photos</h5>
+            <form method="POST" action="{{url_for('upload_file')}}" 
+            enctype="multipart/form-data" multiple=multiple>
+                <div class="form-group">
+                    <input type="file" name="file" id="photoGallery" class="form-control">
+                    <br>
+                    <input type="submit" value="Upload" class="btn btn-success form-control">
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+
+
+    
+{% endblock %}

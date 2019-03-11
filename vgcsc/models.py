@@ -26,6 +26,17 @@ class Access(UserMixin, db.Model):
 def load_user(id):
     return Access.query.get(int(id))
 
+# class PersonModel(db.Model):
+#     __abstract__ = True
+#     username=db.Column(db.String(50), nullable=False)
+#     first_name=db.Column(db.String(50), nullable=False)
+#     last_name=db.Column(db.String(50), nullable=False)
+#     other_names=db.Column(db.String(75), nullable=True)
+#     email = db.Column(db.String(120), nullable=False)
+#     address = db.Column(db.String(200), nullable=False)
+#     phone1 = db.Column(db.String(20), nullable=False)
+#     phone2 = db.Column(db.String(20), nullable=True)
+
 class Profile(db.Model):
     __tablename__ = "profiles"
     id = db.Column(db.Integer, primary_key=True)
@@ -89,3 +100,8 @@ class News(db.Model):
     content = db.Column(db.Text, nullable=False)
     date_created = db.Column(db.Date, index=True, default=datetime.utcnow)
     posted_by = db.Column(db.Integer, db.ForeignKey('access.id'), nullable=False)
+
+class Gallery(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    location = db.Column(db.String(200), nullable=False),

@@ -1,3 +1,4 @@
+import os
 from flask import (
     Blueprint, flash, redirect, render_template, request, url_for
 )
@@ -70,9 +71,10 @@ def exco():
 
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+           filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
 @app.route('/upload', methods=['GET', 'POST'])
+# @login_required
 def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
@@ -87,18 +89,13 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
+            print(filename)
+            if not os.path.isdir(os.path.join(app.config['UPLOAD_FOLDER'])):
+                os.mkdir(os.path.join(app.config['UPLOAD_FOLDER']))
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('uploaded_file',
                                     filename=filename))
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=submit value=Upload>
-    </form>
-    '''
+    return render_template('vgcsc/uploads.html')
 
 @app.route('/gallery')
 def gallery():
