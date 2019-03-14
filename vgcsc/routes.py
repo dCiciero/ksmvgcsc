@@ -8,7 +8,7 @@ from flask_login import (
 from werkzeug.urls import url_parse
 from werkzeug import secure_filename
 from vgcsc import db, app
-from vgcsc.models import Access, Membership, Profile, Executive, PastExecutive
+from vgcsc.models import * # Access, Membership, Profile, Executive, PastExecutive
 
 # bp = Blueprint('routes', __name__)
 
@@ -82,6 +82,10 @@ def upload_file():
             flash('No file part')
             return redirect(request.url)
         file = request.files['file']
+        fototype = request.form['photoType']
+        caption = request.form['filecaption']
+        print(fototype)
+        print(f"caption {caption}")
         # if user does not select file, browser also
         # submit an empty part without filename
         if file.filename == '':
@@ -92,13 +96,17 @@ def upload_file():
             print(filename)
             if not os.path.isdir(os.path.join(app.config['UPLOAD_FOLDER'])):
                 os.mkdir(os.path.join(app.config['UPLOAD_FOLDER']))
+            # PhotoGallery(name=filename,)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
-    return render_template('vgcsc/uploads.html')
+            # flash("Upload successful")
+            return redirect(url_for('uploaded_file'))
+    photoType = DisplayPix.query.all()
+    print(photoType)
+    return render_template('vgcsc/uploads.html', photoType=photoType)
 
 @app.route('/gallery')
 def gallery():
+    inauguration_pix = None
     return render_template('vgcsc/gallery.html')
 
 @app.route('/zones')

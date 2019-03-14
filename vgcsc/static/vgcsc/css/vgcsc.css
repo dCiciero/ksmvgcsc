@@ -3,16 +3,54 @@
         content: "The Current Executives of VGC Sub-Council"
     }
     #banner_head::before{
-        content: "Knights of St. Mulumba Victoria Garden City (VGC) Sub Council"
+        content: "Knights"
     }
+    #banner_head2::before{
+        content: "of St. Mulumba"
+    }
+    #banner_head3::before{
+        content: "victoria garden city (v.g.c) sub council"
+    }
+    /* #banner_logo::before{
+        background: url('../../images/ksm_logo_site.PNG') no-repeat ;
+        background-size: 300px 300px;
+        display: inline-block;
+        
+        content:"";
+        /* content:  url("../../images/ksm_logo_site.PNG"); */
+        /* display: block;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box; */
+        /* background: url(../../images/ksm_logo_site.PNG) no-repeat; */
+        /* width: 70px;
+        height: 80px; *
+    } */
 }
 @media (max-width: 599px){
     #exco_head::before{
         content: "Current Executives"
     }
     #banner_head::before{
-        content: "KSM VGC Sub Council"
+        content: "Knight"
     }
+    #banner_head2::before{
+        content: "of st. mulumba"
+    }
+    #banner_head3::before{
+        content: "v.g.c sub council"
+    }
+    /* #banner_logo::before{
+        /* background-image: url('../../images/ksm_logo_site.PNG');
+        background-size: 10px 20px;
+        display: inline-block;
+        width: 10px; 
+        height: 20px; *
+        content:"";
+        /* content:  url(../../images/ksm_logo_site.PNG); */
+        
+        /* width: 20px;
+        height: 20px; *
+    } */
 }
 body, html{
     height: 100%;
@@ -31,15 +69,51 @@ body, html{
     height: 100%;
 }
 #banner{
-    height: 80px;
+    height: 90px;
     border: 1px #696 solid;
-    background-color: #f1f3e6;
+    background-color: #ffffff;
+    padding-top: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    padding-bottom: 5px;
     
 }
-#banner p{
+#banner_logo {
+    float: left;
+    margin-right: 10px;
+    /* border: 1px solid red; */
+    /* src: url(../../images/ksm_logo_site.PNG); */
+    /* width: 100%;
+    height: 90px; */
+}
+#banner_head{
     text-transform: uppercase;
-    margin-top: 10px;
+    font-weight: bolder;
+    letter-spacing: 10px;
+    margin: 0 0 0 3px;
+    color: #000;
+    /* margin-top: 15px; */
+    font-size: 2.1rem;
+    padding-bottom: 0px;
+    
+}
+#banner_head2{
+    text-transform: uppercase;
+    font-weight: bolder;
+    line-height: 0px;
+    letter-spacing: 1px;
+    margin: 0 auto;
+    color: #000;
+    margin: 0px;
     font-size: 1.5rem;
+}
+#banner_head3{
+    text-transform: uppercase;
+    /* font-weight: bolder; */
+    /* line-height: 0px; */
+    margin: 0 auto;
+    color: #000;
+    margin-top: 8px;
+    font-size: .8rem;
 }
 /* img {
     box-shadow: 3px 3px 5px 1px #cccccc;

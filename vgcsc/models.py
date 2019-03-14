@@ -12,6 +12,7 @@ class Access(UserMixin, db.Model):
     username = db.Column(db.String(50), unique=True, index=True, nullable=False)
     email = db.Column(db.String(120), nullable=False, index=True, unique=True)
     password_hash = db.Column(db.String(128), nullable=False)
+    # member_id = db.Column
 
     def __repr__(self):
         return '<User {}, Email {}>'.format(self.username, self.email)
@@ -69,10 +70,18 @@ class Membership(db.Model):
     access_id = db.Column(db.Integer, db.ForeignKey('access.id'), nullable=False)
 
 
-class Carousel(db.Model):
+class DisplayPix(db.Model):
+    __tablename__ = "displaypix"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+
+class PhotoGallery(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     caption = db.Column(db.String(120), nullable=True)
+    path = db.Column(db.String(200), nullable=False)
+    display_type = db.Column(db.Integer, db.ForeignKey('displaypix.id'), nullable=False)
+
 
 class Executive(db.Model):
     __tablename__ = "executives"
@@ -101,7 +110,3 @@ class News(db.Model):
     date_created = db.Column(db.Date, index=True, default=datetime.utcnow)
     posted_by = db.Column(db.Integer, db.ForeignKey('access.id'), nullable=False)
 
-class Gallery(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    location = db.Column(db.String(200), nullable=False),

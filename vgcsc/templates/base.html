@@ -15,9 +15,20 @@
     
 <section>
   {% block navbar %}
-  <div id="banner">
+  <div id="banner" class="nav nav-bar-expand-lg">
     <div class="container">
-        <p  id="banner_head" class="text-center"></p>
+        <a class="navbar-brand" href="{{ url_for('index') }}" >
+            <img id="banner_logo" src="../static/images/neulogo.png"  class="img-responsive" 
+              width="70" height="70" alt=""> 
+            <p  id="banner_head"></p>
+            <p  id="banner_head2"><sup style="margin: 0px;">&reg;</sup></p>
+            <p  id="banner_head3"></p>
+        </a>
+        <!-- <p  id="banner_head"></p>
+        <p  id="banner_head2"></p> -->
+        <!-- <img id="banner_logo" src="../static/images/ksm.png" width="80" height="80" alt=""> 
+        <p  id="banner_head"></p>
+        <p  id="banner_head2"></p> -->
     </div>
   </div>
     <nav class="navbar  navbar-expand-md navbar-dark bg-success">
@@ -25,12 +36,12 @@
           <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_ksmvgc" aria-expanded="false">
               <span class="navbar-toggler-icon"></span>
           </button> 
-          <a class="navbar-brand" href="{{ url_for('index') }}">
-              <img id="ksmvgc_logo" src="../static/images/brand_img.PNG" width="40" height="40" alt=""> 
+          <!-- <a class="navbar-brand" href="{{ url_for('index') }}">
+              <img id="ksmvgc_logo" src="../static/images/neulogo.png" width="40" height="40" alt=""> 
               <label id="ksmvgc_label" for="">
                 KSM VGC
               </label>
-          </a>
+          </a> -->
             <div class="collapse navbar-collapse" id="navbar_ksmvgc">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active"><a class="nav-link" href="{{url_for('index')}}">Home<span class="sr-only">(current)</span></a></li>
