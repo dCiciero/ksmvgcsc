@@ -24,11 +24,7 @@
             <p  id="banner_head2"><sup style="margin: 0px;">&reg;</sup></p>
             <p  id="banner_head3"></p>
         </a>
-        <!-- <p  id="banner_head"></p>
-        <p  id="banner_head2"></p> -->
-        <!-- <img id="banner_logo" src="../static/images/ksm.png" width="80" height="80" alt=""> 
-        <p  id="banner_head"></p>
-        <p  id="banner_head2"></p> -->
+       
     </div>
   </div>
     <nav class="navbar  navbar-expand-md navbar-dark bg-success">
@@ -52,10 +48,8 @@
                         Gallery
                       </a>
                       <div class="dropdown-menu" aria-labelledby="galleryDropdown">
-                        <a class="dropdown-item" href="#">Inauguration Pictures</a>
-                        <!-- <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a> -->
+                        <a class="dropdown-item" href="{{ url_for('gallery',id=1) }}">Inauguration</a>
+                      
                       </div>
                     </li>
                     <li class="nav-item" ><a class="nav-link" href="{{url_for('zones')}}">Zones</a></li>
@@ -82,25 +76,32 @@
     <header>
       {% block header %}{% endblock %}
     </header>
-    {% for message in get_flashed_messages() %}
-      <div class="alert alert-danger">
-        <p class="lead">{{ message }}</p>
-      </div>
-    {% endfor %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages  %}
+          <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+            <p class="lead">{{ message }}</p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
     
     {% block content %}{% endblock %}
   </div>
 
-    
-</section>
-<div id="footer" class="container">
+  <div id="footer" class="container">
     <div class="card">
       <div class="card-body bg-light">
           <small class="text-muted">&copy 2019 Knights of St. Mulumba VGC Sub Council.</small>
       </div>
     </div>
   </div>
-</div>
+</div>    
+</section>
+
 
 <!-- Bootstrap related JavaScript -->
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -109,3 +110,4 @@
 
 <script src="{{ url_for('.static', filename='vgcsc/js/jquery-3.3.1.slim.min.js') }}"></script>
 <script src="{{ url_for('.static', filename='vgcsc/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('.static', filename='vgcsc//js/vgcsc.js') }}"></script>

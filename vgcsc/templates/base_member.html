@@ -8,23 +8,57 @@
     
 <section>
   {% block navbar %}
+  <div id="banner" class="nav nav-bar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}" >
+            <img id="banner_logo" src="../static/images/neulogo.png"  class="img-responsive" 
+              width="70" height="70" alt=""> 
+            <p  id="banner_head"></p>
+            <p  id="banner_head2"><sup style="margin: 0px;">&reg;</sup></p>
+            <p  id="banner_head3"></p>
+        </a>
+        <!-- <p  id="banner_head"></p>
+        <p  id="banner_head2"></p> -->
+        <!-- <img id="banner_logo" src="../static/images/ksm.png" width="80" height="80" alt=""> 
+        <p  id="banner_head"></p>
+        <p  id="banner_head2"></p> -->
+    </div>
+  </div>
     <nav class="navbar navbar-expand-md navbar-dark bg-success">
         <div class="container">
           <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_ksmvgc" aria-expanded="false">
               <span class="navbar-toggler-icon"></span>
           </button> 
-          <a class="navbar-brand" href="{{ url_for('index') }}">
+          <!-- <a class="navbar-brand" href="{{ url_for('index') }}">
               <img id="ksmvgc_logo" src="../static/images/ksmbadge.jpg" width="60" height="60" alt=""> 
               <label id="ksmvgc_label" for="">
                 KSM VGC
               </label>
-          </a>
+          </a> -->
             <div class="collapse navbar-collapse" id="navbar_ksmvgc">
                 <ul class="navbar-nav mr-auto">
                     <!-- <li class="navbar-item active"><a class="nav-link" href="">Home<span class="sr-only">(current)</span></a></li> -->
                     <li class="navbar-item active" ><a class="nav-link" href="{{ url_for('membership') }}">Personal Record</a></li>
                     <li class="navbar-item" ><a class="nav-link" href="{{ url_for('directory') }}">Members Directory</a></li>
-                    <!-- <li class="navbar-item" ><a class="nav-link" href="">Executives</a></li> -->
+                    <li class="nav-item dropdown" >
+                      <a class="nav-link dropdown-toggle" href="#" id="galleryDropdown" role="button" 
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Setups
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="galleryDropdown">
+                        <a class="dropdown-item" href="{{ url_for('setups') }}">Gallery Section</a>
+                        <a class="dropdown-item" href="{{ url_for('setups') }}">Sub Council Executives</a>
+                        <a class="dropdown-item" href="{{ url_for('setups') }}">Zonal Executives</a>
+                        <a class="dropdown-item" href="{{ url_for('setups') }}">Offices</a>
+                        <a class="dropdown-item" href="{{ url_for('uploads') }}">Uploads</a>
+                      </div>
+                      <!-- <div class="dropdown-menu" aria-labelledby="galleryDropdown">
+                        <a class="dropdown-item" href="{{ url_for('setups') }}">Sub Council Executives</a>
+                      </div>
+                      <div class="dropdown-menu" aria-labelledby="galleryDropdown">
+                        <a class="dropdown-item" href="{{ url_for('setups') }}">Zonal Executives</a>
+                      </div> -->
+                    </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     {% if current_user.is_anonymous %}
@@ -47,10 +81,13 @@
       {% block header %}
       {% endblock %}
     </header>
-    {% for message in get_flashed_messages() %}
-      <div class="alert alert-danger">
-        <p class="lead">{{ message }}</p>
-      </div>
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+      <p class="">{{ message }}</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
     {% endfor %}
     
     {% block content %}{% endblock %}
@@ -67,6 +104,7 @@
 
 <script src="{{ url_for('.static', filename='vgcsc/js/jquery-3.3.1.slim.min.js') }}"></script>
 <script src="{{ url_for('.static', filename='vgcsc/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('.static', filename='vgcsc//js/vgcsc.js') }}"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->

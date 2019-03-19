@@ -8,13 +8,13 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title text-center">Upload Photos</h5>
-            <form method="POST" action="{{url_for('upload_file')}}" 
-                enctype="multipart/form-data" multiple=multiple>
+            <form method="POST" action="{{url_for('uploads')}}" 
+                enctype="multipart/form-data" >
                 <div class="form-group">
                     <!-- <label for="filecaption">Select</label> -->
                     
                     {% if photoType %}
-                        <select name="photoType" id="photoSection" class="form-control">
+                        <select name="photoType" id="gallerySelection" class="form-control">
                             {% for type in photoType %}
                                 <option value="{{ type.id }}">{{ type.name }}</option>
                             {% endfor %}
@@ -23,7 +23,7 @@
                     <br>
                     <!-- <input type="submit" value="Upload" class="btn btn-success form-control"> -->
                 </div>
-                <div class="form-group">
+                <div id="photoCaption" class="form-group">
                     <label for="filecaption">Caption</label>
                     <input type="text" name="filecaption" id="txtcaption" placeholder="Give a brief description of the photo" class="form-control">
                     <br>
@@ -31,7 +31,8 @@
                 </div>
                 <div class="form-group">
                     <label for="photoGallery">Select Photo to Upload</label>
-                    <input type="file" name="file" id="photoGallery" class="form-control">
+                    <input type="file" name="file" id="photoGallery" class="form-control"
+                    multiple=multiple>
                     <br>
                     <input type="submit" value="Upload" class="btn btn-success form-control">
                 </div>

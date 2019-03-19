@@ -6,9 +6,10 @@ from flask_login import (
     current_user, login_user, logout_user, login_required
 )
 from werkzeug.urls import url_parse
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 from vgcsc import db, app
-from vgcsc.models import * # Access, Membership, Profile, Executive, PastExecutive
+from vgcsc.models import * # Access, Membership, Profile, Executive, PastExecutive, PhotoGallery, DisplayPix, \
+    #News
 
 # bp = Blueprint('routes', __name__)
 
@@ -75,38 +76,50 @@ def allowed_file(filename):
 
 @app.route('/upload', methods=['GET', 'POST'])
 # @login_required
-def upload_file():
+def uploads():
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
-            flash('No file part')
+            flash('No file (photo) selected', 'danger')
             return redirect(request.url)
-        file = request.files['file']
+        imglist = request.files.getlist('file') #['file']
+        
         fototype = request.form['photoType']
         caption = request.form['filecaption']
         print(fototype)
         print(f"caption {caption}")
         # if user does not select file, browser also
         # submit an empty part without filename
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            print(filename)
-            if not os.path.isdir(os.path.join(app.config['UPLOAD_FOLDER'])):
-                os.mkdir(os.path.join(app.config['UPLOAD_FOLDER']))
-            # PhotoGallery(name=filename,)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            # flash("Upload successful")
-            return redirect(url_for('uploaded_file'))
+        for img in imglist:
+            if len(img.filename) <= 5:
+                flash('Image name is too short, rename and try again', "warning")
+                return redirect(request.url)
+            if img.filename == '':
+                flash('No selected file', "danger")
+                return redirect(request.url)
+            if img and allowed_file(img.filename):
+                filename = secure_filename(img.filename)
+                print(filename)
+                if not os.path.isdir(os.path.join(app.config['UPLOAD_FOLDER'])):
+                    os.mkdir(os.path.join(app.config['UPLOAD_FOLDER']))
+                path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                if os.path.exists(path):
+                    flash("File has been uploaded previously", "warning")
+                    return redirect(url_for('uploads'))
+                img.save(path)
+                photo = PhotoGallery(name=filename,caption=caption, path=path, display_type=fototype)
+                db.session.add(photo)
+                db.session.commit()
+                flash("Upload successful", "success")
+                return redirect(url_for('uploads'))
     photoType = DisplayPix.query.all()
     print(photoType)
     return render_template('vgcsc/uploads.html', photoType=photoType)
 
-@app.route('/gallery')
-def gallery():
-    inauguration_pix = None
+@app.route('/gallery/<int:id>')
+def gallery(id):
+    print(id)
+    inauguration_pix = PhotoGallery.query.filter_by(disaply_type=id)
     return render_template('vgcsc/gallery.html')
 
 @app.route('/zones')
@@ -130,4 +143,7 @@ def directory():
     else:
         flash("You have to login in to access this page")
         return redirect(url_for('login'))
-    
+
+@app.route('/setups', methods=["GET","POST"])
+def setups():
+    return "setup ares"
