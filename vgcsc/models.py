@@ -54,7 +54,7 @@ class Profile(db.Model):
     work_address = db.Column(db.String(200), nullable=True)
 
 class Membership(db.Model):
-    __tablename__ = "memberships"
+    __tablename__ = "membership"
     id = db.Column(db.Integer, primary_key=True)
     first_name=db.Column(db.String(50), nullable=False)
     last_name=db.Column(db.String(50), nullable=False)
@@ -88,7 +88,7 @@ class PhotoGallery(db.Model):
 class GalleryOptions(db.Model):
     __tablename__ = "gallery_options"
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50), nullable=False) 
     # PhotoGallery = db.Column(db.Integer, db.ForeignKey('photo_gallery.id'), nullable=False)
 
 class Executive(db.Model):
