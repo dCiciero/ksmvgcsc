@@ -8,7 +8,8 @@ from vgcsc.models import * # Access, Membership, Profile, Executive, PastExecuti
 def make_shell_context():
     return {"db": db, "Access": Access, "Membership": Membership, "Executive": Executive, \
         "PastExecutive":PastExecutive, "Profile": Profile, "News":News, 
-        "PhotoGallery":PhotoGallery, "DisplayPix":DisplayPix, "Config": Config}
+        "PhotoGallery":PhotoGallery, "DisplayPix":DisplayPix, "GalleryOptions":GalleryOptions,
+         "Config": Config}
 
 # if __name__ == "__main__":
 #    # with vgcsc.app_context():

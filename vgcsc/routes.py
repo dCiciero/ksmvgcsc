@@ -86,14 +86,22 @@ def uploads():
         
         fototype = request.form['photoType']
         caption = request.form['filecaption']
+        galleryType = request.form['galleryOptions']
+        if galleryType == 0 or galleryType == '0':
+            if fototype == "2":
+                flash('Select an option', 'warning')
+                return redirect(request.url)
+            galleryType = None
         print(fototype)
+        print(galleryType)
         print(f"caption {caption}")
         # if user does not select file, browser also
         # submit an empty part without filename
         for img in imglist:
-            if len(img.filename) <= 5:
-                flash('Image name is too short, rename and try again', "warning")
-                return redirect(request.url)
+            # filename.rsplit('.', 1)[1].lower()
+            # if len(img.filename.rsplit('.', 1)[1].lower()) <= 5:
+            #     flash('Image name is too short, rename and try again', "warning")
+            #     return redirect(request.url)
             if img.filename == '':
                 flash('No selected file', "danger")
                 return redirect(request.url)
@@ -107,19 +115,22 @@ def uploads():
                     flash("File has been uploaded previously", "warning")
                     return redirect(url_for('uploads'))
                 img.save(path)
-                photo = PhotoGallery(name=filename,caption=caption, path=path, display_type=fototype)
+                photo = PhotoGallery(name=filename,caption=caption, path=path, display_type=fototype,
+                gallery_options=galleryType)
                 db.session.add(photo)
                 db.session.commit()
                 flash("Upload successful", "success")
                 return redirect(url_for('uploads'))
     photoType = DisplayPix.query.all()
-    print(photoType)
-    return render_template('vgcsc/uploads.html', photoType=photoType)
+    galleryOptions = GalleryOptions.query.all()
+    # print(request.form['galleryOptions'])
+    
+    return render_template('vgcsc/uploads.html', photoType=photoType, galleryOptions=galleryOptions)
 
 @app.route('/gallery/<int:id>')
 def gallery(id):
     print(id)
-    inauguration_pix = PhotoGallery.query.filter_by(disaply_type=id)
+    #inauguration_pix = PhotoGallery.query.filter_by(disaply_type=id)
     return render_template('vgcsc/gallery.html')
 
 @app.route('/zones')

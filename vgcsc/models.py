@@ -76,12 +76,20 @@ class DisplayPix(db.Model):
     name = db.Column(db.String(20), nullable=False)
 
 class PhotoGallery(db.Model):
+    __tablename__ = "photo_gallery"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     caption = db.Column(db.String(120), nullable=True)
     path = db.Column(db.String(200), nullable=False)
     display_type = db.Column(db.Integer, db.ForeignKey('displaypix.id'), nullable=False)
+    gallery_options = db.Column(db.Integer, db.ForeignKey('gallery_options.id'))
 
+
+class GalleryOptions(db.Model):
+    __tablename__ = "gallery_options"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    # PhotoGallery = db.Column(db.Integer, db.ForeignKey('photo_gallery.id'), nullable=False)
 
 class Executive(db.Model):
     __tablename__ = "executives"
