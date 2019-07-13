@@ -1,8 +1,12 @@
-from flask import render_template
+from flask import render_template, make_response
 from vgcsc import app, db
 
 @app.errorhandler(404)
-def not_found_error(error):
+def page_not_found_error(error):
+    # resp = make_response(render_template('vgcsc/404.html'), 404)
+    # resp.headers['X-Something'] = 'A Value'
+    # print(resp.headers)
+    # return resp
     return render_template('vgcsc/404.html'), 404
 
 @app.errorhandler(500)

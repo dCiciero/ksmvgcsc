@@ -15,19 +15,20 @@
     
 <section>
   {% block navbar %}
-  <div id="banner" class="nav nav-bar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url_for('index') }}" >
-            <img id="banner_logo" src="../static/images/neulogo.png"  class="img-responsive" 
-              width="70" height="70" alt=""> 
-            <p  id="banner_head"></p>
-            <p  id="banner_head2"><sup style="margin: 0px;">&reg;</sup></p>
-            <p  id="banner_head3"></p>
-        </a>
-       
-    </div>
-  </div>
-    <nav class="navbar  navbar-expand-md navbar-dark bg-success">
+  
+    <nav class="fixed-top" >
+        <div id="banner" class="nav nav-bar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('index') }}" >
+                    <img id="banner_logo" src="../static/images/Logo_KSM_Site.PNG"  class="img-responsive"> 
+                    <!-- <p  id="banner_head"></p>
+                    <p  id="banner_head2"><sup style="margin: 0px;">&reg;</sup></p>
+                    <p  id="banner_head3"></p> -->
+                </a>
+               
+            </div>
+          </div>
+      <div class="navbar navbar-expand-sm navbar-dark bg-success ">
         <div class="container">
           <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_ksmvgc" aria-expanded="false">
               <span class="navbar-toggler-icon"></span>
@@ -38,28 +39,43 @@
                 KSM VGC
               </label>
           </a> -->
-            <div class="collapse navbar-collapse" id="navbar_ksmvgc">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active"><a class="nav-link" href="{{url_for('index')}}">Home<span class="sr-only">(current)</span></a></li>
-                    
-                    <li class="nav-item dropdown" >
-                      <a class="nav-link dropdown-toggle" href="#" id="galleryDropdown" role="button" 
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Gallery
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="galleryDropdown">
-                        <a class="dropdown-item" href="{{ url_for('gallery',id=1) }}">Inauguration</a>
-                      
-                      </div>
-                    </li>
-                    <li class="nav-item" ><a class="nav-link" href="{{url_for('zones')}}">Zones</a></li>
-                    <li class="nav-item" ><a class="nav-link" href="{{url_for('exco')}}">Executives</a></li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item" ><a class="nav-link" href="{{url_for('membership')}}">Members Only</a></li>
-                </ul>
-            </div>
-        </div>
+          <div class="collapse navbar-collapse" id="navbar_ksmvgc">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active"><a class="nav-link py-0" href="{{url_for('index')}}">Home<span class="sr-only">(current)</span></a></li>
+              
+              <li class="nav-item dropdown" >
+                <a class="nav-link dropdown-toggle py-0" href="#" id="galleryDropdown" role="button" 
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Gallery
+                </a>
+                <div class="dropdown-menu" aria-labelledby="galleryDropdown">
+                    {% if gallery_options %}
+                    {% for options in gallery_options %}
+                    <a class="dropdown-item py-0.5" href="{{ url_for('gallery',id=options.id) }}">{{ options.name }}</a>
+                    {% endfor %}
+                    {% endif %}
+                
+                </div>
+              </li>
+              <li class="nav-item" ><a class="nav-link py-0" href="{{url_for('zones')}}">Zones</a></li>
+              <li class="nav-item dropdown" >
+                <a class="nav-link dropdown-toggle py-0" href="#" id="excoDropdown" role="button" 
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Executives
+                </a>
+                <div class="dropdown-menu" aria-labelledby="excoDropdown">
+                  <a class="dropdown-item " href="{{ url_for('exco',option='KSM') }}">KSM Executives</a>
+                  <a class="dropdown-item " href="{{ url_for('exco',option='LSM') }}">LSM Executives</a>
+                
+                </div>
+              </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item" ><a class="nav-link py-0" href="{{url_for('membership')}}">Members Only</a></li>
+            </ul>
+          </div>
+        </div>  <!-- end container -->
+      </div> <!-- end navbar--> 
     </nav>
   {% endblock %}
 </section>
@@ -67,40 +83,201 @@
 <section class="content">
   
   <div class="container">
-    
-        {% block carousel %}
-
-        {% endblock %}
+    <div class="card">
+      <div class="card-body">
+        {% block carousel %} {% endblock %}  
+      <!-- <br> -->
+      <header>
+        {% block header %}{% endblock %}
+      </header>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages  %}
+            <div class="alert alert-{{category}} alert-dismissible fade show"  role="alert">
+              {{ message}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            
+          {% endfor %}
+        {% endif %}
+      {% endwith %}   
       
-    <br>
-    <header>
-      {% block header %}{% endblock %}
-    </header>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages  %}
-          <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
-            <p class="lead">{{ message }}</p>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
+        {% block content %}{% endblock %}
+      </div>
+    </div>
     
-    {% block content %}{% endblock %}
-  </div>
+<!-- Footer -->
+<footer id="footer" class="page-footer font-small indigo">
 
-  <div id="footer" class="container">
+  <!-- Footer Links -->
+  <div class="container">
+
+    <!-- Grid row-->
+    <div class="row text-center d-flex justify-content-center pt-5 mb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#!">About us</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#!">Products</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#!">Awards</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#!">FAQ</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <!-- <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#!">Contact</a>
+        </h6>
+      </div> -->
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row-->
+    <hr class="rgba-white-light" style="margin: 0 15%;">
+
+    <!-- Grid row-->
+    <div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-12 mt-5">
+        <p style="line-height: 1.7rem">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+          accusantium doloremque laudantium, totam rem
+          aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+          explicabo.
+          Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
+      </div>
+      <!-- Grid column -->
+      <!-- Grid column -->
+      <div class="col-md-4 col-12 mt-4">
+          <h6 class="font-weight-bold text-uppercase mt-3 mb-4">Contact</h6>
+
+          <ul class="list-unstyled">
+            <li>
+                <i class="fa fa-home mr-3"></i> New York, NY 10012, US
+            </li>
+            <li>
+                <i class="fa fa-envelope mr-3"></i> info@gmail.com
+            </li>
+            <li>
+                <i class="fa fa-phone mr-3"></i> + 01 234 567 88
+            </li>
+            <!-- <li>
+              <a href="#!">Link 4</a>
+            </li> -->
+          </ul>
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row-->
+    <hr class="clearfix d-md-none rgba-white-light" style="margin: 10% 15% 5%;">
+
+    <!-- Grid row-->
+    <div class="row text-center pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-12">
+
+        <div class="mb-5 flex-center">
+
+          <!-- Facebook -->
+          <a class="fb-ic">
+            <i class="fa fa-facebook-f fa-lg white-text mr-4"> </i>
+          </a>
+          <!-- Twitter -->
+          <a class="tw-ic">
+            <i class="fa fa-twitter fa-lg white-text mr-4"> </i>
+          </a>
+          <!-- Google +-->
+          <a class="gplus-ic">
+            <i class="fa fa-google-plus fa-lg white-text mr-4"> </i>
+          </a>
+          <!--Linkedin -->
+          <a class="li-ic">
+            <i class="fa fa-linkedin fa-lg white-text mr-4"> </i>
+          </a>
+          <!--Instagram-->
+          <a class="ins-ic">
+            <i class="fa fa-instagram fa-lg white-text mr-4"> </i>
+          </a>
+          <!--Pinterest-->
+          <a class="pin-ic">
+            <i class="fa fa-pinterest fa-lg white-text"> </i>
+          </a>
+
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row-->
+
+  </div>
+  <!-- Footer Links -->
+
+</footer>
+<!-- Footer -->
+<!-- Footer -->
+    <!-- <footer id="footer">      
+        {% block footer%} {% endblock %} 
+          <div class="">
+            <ul class="footer_list">
+              <li><a href="">About Us</a></li>
+              <li><a href="">FAQ</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+    </footer> -->
+    <div id="footer_copyright" class="footer-copyright text-center py-3">
+        <small>Copyright &copy 2019 Knights of St. Mulumba VGC Sub Council.</small>
+    </div>
+  </div>    <!-- end container-->
+</section>
+<!-- <section> -->
+  <!-- <div id="footer" >
     <div class="card">
       <div class="card-body bg-light">
           <small class="text-muted">&copy 2019 Knights of St. Mulumba VGC Sub Council.</small>
       </div>
     </div>
   </div>
-</div>    
-</section>
+</div> -->
+<!-- <section>
+  <div class="card container ">
+    <div class="card-body">
+      <small class="text-muted">&copy 2019 Knights of St. Mulumba VGC Sub Council.</small>
+
+    </div>
+  </div>
+</section> -->
+<!-- </section> -->
 
 
 <!-- Bootstrap related JavaScript -->
@@ -110,4 +287,4 @@
 
 <script src="{{ url_for('.static', filename='vgcsc/js/jquery-3.3.1.slim.min.js') }}"></script>
 <script src="{{ url_for('.static', filename='vgcsc/js/bootstrap.min.js') }}"></script>
-<script src="{{ url_for('.static', filename='vgcsc//js/vgcsc.js') }}"></script>
+<script src="{{ url_for('static', filename='vgcsc/js/vgcsc.js') }}"></script>

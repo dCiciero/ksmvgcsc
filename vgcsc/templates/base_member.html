@@ -8,7 +8,7 @@
     
 <section>
   {% block navbar %}
-  <div id="banner" class="nav nav-bar-expand-lg">
+  <!-- <div id="banner" class="nav nav-bar-expand-lg">
     <div class="container">
         <a class="navbar-brand" href="{{ url_for('index') }}" >
             <img id="banner_logo" src="../static/images/neulogo.png"  class="img-responsive" 
@@ -17,59 +17,75 @@
             <p  id="banner_head2"><sup style="margin: 0px;">&reg;</sup></p>
             <p  id="banner_head3"></p>
         </a>
-        <!-- <p  id="banner_head"></p>
-        <p  id="banner_head2"></p> -->
-        <!-- <img id="banner_logo" src="../static/images/ksm.png" width="80" height="80" alt=""> 
-        <p  id="banner_head"></p>
-        <p  id="banner_head2"></p> -->
+        
     </div>
-  </div>
-    <nav class="navbar navbar-expand-md navbar-dark bg-success">
-        <div class="container">
-          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_ksmvgc" aria-expanded="false">
-              <span class="navbar-toggler-icon"></span>
-          </button> 
-          <!-- <a class="navbar-brand" href="{{ url_for('index') }}">
-              <img id="ksmvgc_logo" src="../static/images/ksmbadge.jpg" width="60" height="60" alt=""> 
-              <label id="ksmvgc_label" for="">
-                KSM VGC
-              </label>
-          </a> -->
-            <div class="collapse navbar-collapse" id="navbar_ksmvgc">
-                <ul class="navbar-nav mr-auto">
-                    <!-- <li class="navbar-item active"><a class="nav-link" href="">Home<span class="sr-only">(current)</span></a></li> -->
-                    <li class="navbar-item active" ><a class="nav-link" href="{{ url_for('membership') }}">Personal Record</a></li>
-                    <li class="navbar-item" ><a class="nav-link" href="{{ url_for('directory') }}">Members Directory</a></li>
-                    <li class="nav-item dropdown" >
-                      <a class="nav-link dropdown-toggle" href="#" id="galleryDropdown" role="button" 
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Setups
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="galleryDropdown">
-                        <a class="dropdown-item" href="{{ url_for('setups') }}">Gallery Section</a>
-                        <a class="dropdown-item" href="{{ url_for('setups') }}">Sub Council Executives</a>
-                        <a class="dropdown-item" href="{{ url_for('setups') }}">Zonal Executives</a>
-                        <a class="dropdown-item" href="{{ url_for('setups') }}">Offices</a>
-                        <a class="dropdown-item" href="{{ url_for('uploads') }}">Uploads</a>
-                      </div>
-                      <!-- <div class="dropdown-menu" aria-labelledby="galleryDropdown">
-                        <a class="dropdown-item" href="{{ url_for('setups') }}">Sub Council Executives</a>
-                      </div>
-                      <div class="dropdown-menu" aria-labelledby="galleryDropdown">
-                        <a class="dropdown-item" href="{{ url_for('setups') }}">Zonal Executives</a>
-                      </div> -->
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    {% if current_user.is_anonymous %}
-                    <!-- <li class="navbar-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li> -->
-                    {% else %}
-                      <li class="navbar-item"><a class="nav-link" href="#">Welcome {{ current_user.username }}</a></li>
-                      <li class="navbar-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
-                    {% endif %}
-                  </ul>
-            </div>
+  </div> -->
+    <nav class="fixed-top">
+      <div id="banner" class="nav nav-bar-expand-lg">
+          <div class="container">
+              <a class="navbar-brand" href="{{ url_for('index') }}" >
+                  <img id="banner_logo" src="../static/images/Logo_KSM_Site.PNG"  class="img-responsive"> 
+                  <!-- <p  id="banner_head"></p>
+                  <p  id="banner_head2"><sup style="margin: 0px;">&reg;</sup></p>
+                  <p  id="banner_head3"></p> -->
+              </a>
+              
+          </div>
         </div>
+        <div class="navbar navbar-expand-md navbar-dark bg-success">
+          <div class="container">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_ksmvgc" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button> 
+              <div class="collapse navbar-collapse" id="navbar_ksmvgc">
+                  <ul class="navbar-nav mr-auto">
+                      <!-- <li class="navbar-item active"><a class="nav-link" href="">Home<span class="sr-only">(current)</span></a></li> -->
+                      <li class="navbar-item active" ><a class="nav-link py-0" href="{{ url_for('membership') }}">Personal Record</a></li>
+                      <li class="navbar-item" ><a class="nav-link py-0" href="{{ url_for('directory') }}">Members Directory</a></li>
+                      <li class="nav-item dropdown" >
+                        <a class="nav-link dropdown-toggle py-0" href="#" id="galleryDropdown" role="button" 
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Setups
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="galleryDropdown">
+                          <a class="dropdown-item" data-toggle="modal" data-target="#setupScreen" 
+                            data-whatever="Gallery Section" data-backdrop="static" data-keyboard="false"
+                            href="{{ url_for('setups') }}">Gallery Section
+                          </a>
+                          <a class="dropdown-item" data-toggle="modal" data-target="#setupScreen" 
+                            data-whatever="Sub Council Executives" data-backdrop="static" data-keyboard="false"
+                            href="{{ url_for('setups') }}">Sub Council Executives
+                          </a>
+                          <a class="dropdown-item" data-toggle="modal" data-target="#setupScreen" 
+                            data-whatever="Zonal Executives" data-backdrop="static" data-keyboard="false"
+                            href="{{ url_for('setups') }}">Zonal Executives
+                          </a>
+                          <a class="dropdown-item" data-toggle="modal" data-target="#setupScreen" 
+                            data-whatever="Offices" data-backdrop="static" data-keyboard="false"
+                            href="{{ url_for('setups') }}">Offices
+                          </a>
+                          <a class="dropdown-item" href="{{ url_for('uploads') }}">Uploads</a>
+                        </div>
+                        <!-- <div class="dropdown-menu" aria-labelledby="galleryDropdown">
+                          <a class="dropdown-item" href="{{ url_for('setups') }}">Sub Council Executives</a>
+                        </div>
+                        <div class="dropdown-menu" aria-labelledby="galleryDropdown">
+                          <a class="dropdown-item" href="{{ url_for('setups') }}">Zonal Executives</a>
+                        </div> -->
+                      </li>
+                  </ul>
+                  <ul class="navbar-nav ml-auto">
+                      {% if current_user.is_anonymous %}
+                      <!-- <li class="navbar-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li> -->
+                      {% else %}
+                        <li class="navbar-item"><a class="nav-link" href="#">Welcome {{ current_user.username }}</a></li>
+                        <li class="navbar-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+                      {% endif %}
+                    </ul>
+              </div>
+          </div>
+        </div>
+        
     </nav>
   {% endblock %}
 </section>
@@ -83,28 +99,193 @@
     </header>
     {% for category, message in get_flashed_messages(with_categories=true) %}
     <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
-      <p class="">{{ message }}</p>
+      {{ message }}
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     {% endfor %}
-    
-    {% block content %}{% endblock %}
-  </div>
-</section>
-<div id="footer" class="container">
-    <div class="card">
-      <div class="card-body bg-light">
-          <small class="text-muted">&copy 2019 Knights of St. Mulumba VGC Sub Council.</small>
+    <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#setupScreen">
+    Launch demo modal
+  </button> -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="setupScreen" tabindex="-1" role="dialog" aria-labelledby="setupScreenTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="post">
+            <div class="form-group">
+              <label for="txtlabel" class="modal-label">Options</label>
+              <input type="text" name="filecaption" id="txtlabel" placeholder="" class="form-control">
+            </div>
+            <div class="form-group"></div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
-</div>
+  </div> <!-- End Modal -->
+    {% block content %}{% endblock %}
+  <!-- Footer -->
+<footer id="footer" class="page-footer font-small indigo">
+
+    <!-- Footer Links -->
+    <div class="container">
+  
+      <!-- Grid row-->
+      <div class="row text-center d-flex justify-content-center pt-5 mb-3">
+  
+        <!-- Grid column -->
+        <div class="col-md-2 mb-3">
+          <h6 class="text-uppercase font-weight-bold">
+            <a href="#!">About us</a>
+          </h6>
+        </div>
+        <!-- Grid column -->
+  
+        <!-- Grid column -->
+        <div class="col-md-2 mb-3">
+          <h6 class="text-uppercase font-weight-bold">
+            <a href="#!">Products</a>
+          </h6>
+        </div>
+        <!-- Grid column -->
+  
+        <!-- Grid column -->
+        <div class="col-md-2 mb-3">
+          <h6 class="text-uppercase font-weight-bold">
+            <a href="#!">Awards</a>
+          </h6>
+        </div>
+        <!-- Grid column -->
+  
+        <!-- Grid column -->
+        <div class="col-md-2 mb-3">
+          <h6 class="text-uppercase font-weight-bold">
+            <a href="#!">FAQ</a>
+          </h6>
+        </div>
+        <!-- Grid column -->
+  
+        <!-- Grid column -->
+        <!-- <div class="col-md-2 mb-3">
+          <h6 class="text-uppercase font-weight-bold">
+            <a href="#!">Contact</a>
+          </h6>
+        </div> -->
+        <!-- Grid column -->
+  
+      </div>
+      <!-- Grid row-->
+      <hr class="rgba-white-light" style="margin: 0 15%;">
+  
+      <!-- Grid row-->
+      <div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
+  
+        <!-- Grid column -->
+        <div class="col-md-5 col-12 mt-5">
+          <p style="line-height: 1.7rem">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+            accusantium doloremque laudantium, totam rem
+            aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+            explicabo.
+            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
+        </div>
+        <!-- Grid column -->
+        <!-- Grid column -->
+        <div class="col-md-4 col-12 mt-4">
+            <h6 class="font-weight-bold text-uppercase mt-3 mb-4">Contact</h6>
+  
+            <ul class="list-unstyled">
+              <li>
+                  <i class="fa fa-home mr-3"></i> New York, NY 10012, US
+              </li>
+              <li>
+                  <i class="fa fa-envelope mr-3"></i> info@gmail.com
+              </li>
+              <li>
+                  <i class="fa fa-phone mr-3"></i> + 01 234 567 88
+              </li>
+              <!-- <li>
+                <a href="#!">Link 4</a>
+              </li> -->
+            </ul>
+        </div>
+        <!-- Grid column -->
+  
+      </div>
+      <!-- Grid row-->
+      <hr class="clearfix d-md-none rgba-white-light" style="margin: 10% 15% 5%;">
+  
+      <!-- Grid row-->
+      <div class="row text-center pb-3">
+  
+        <!-- Grid column -->
+        <div class="col-md-12">
+  
+          <div class="mb-5 flex-center">
+  
+            <!-- Facebook -->
+            <a class="fb-ic">
+              <i class="fa fa-facebook-f fa-lg white-text mr-4"> </i>
+            </a>
+            <!-- Twitter -->
+            <a class="tw-ic">
+              <i class="fa fa-twitter fa-lg white-text mr-4"> </i>
+            </a>
+            <!-- Google +-->
+            <a class="gplus-ic">
+              <i class="fa fa-google-plus fa-lg white-text mr-4"> </i>
+            </a>
+            <!--Linkedin -->
+            <a class="li-ic">
+              <i class="fa fa-linkedin fa-lg white-text mr-4"> </i>
+            </a>
+            <!--Instagram-->
+            <a class="ins-ic">
+              <i class="fa fa-instagram fa-lg white-text mr-4"> </i>
+            </a>
+            <!--Pinterest-->
+            <a class="pin-ic">
+              <i class="fa fa-pinterest fa-lg white-text"> </i>
+            </a>
+  
+          </div>
+  
+        </div>
+        <!-- Grid column -->
+  
+      </div>
+      <!-- Grid row-->
+  
+    </div>
+    <!-- Footer Links -->
+  
+  </footer>
+  <!-- Footer -->
+  
+    <div id="footer_copyright" class="footer-copyright text-center py-3">
+        <small>Copyright &copy 2019 Knights of St. Mulumba VGC Sub Council.</small>
+    </div>
+  
+  </div> <!-- container-->
+</section>
+
 <!-- Bootstrap related JavaScript -->
 
 <script src="{{ url_for('.static', filename='vgcsc/js/jquery-3.3.1.slim.min.js') }}"></script>
 <script src="{{ url_for('.static', filename='vgcsc/js/bootstrap.min.js') }}"></script>
-<script src="{{ url_for('.static', filename='vgcsc//js/vgcsc.js') }}"></script>
+<script src="{{ url_for('.static', filename='vgcsc/js/vgcsc.js') }}"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->

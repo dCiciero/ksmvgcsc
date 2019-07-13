@@ -1,6 +1,6 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
-upload_folder = os.path.join(basedir, 'uploads')
+upload_folder = os.path.join(basedir, 'vgcsc/static/images/uploads')
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'

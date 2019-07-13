@@ -5,10 +5,11 @@
   <p class="lead">{{ message }}</p>
 </div>
 {% endfor %} -->
+    
     <div class="card">
         <div class="card-body">
             <h5 class="card-title text-center">Upload Photos</h5>
-            <form method="POST" action="{{url_for('uploads')}}" 
+            <form id="frm-upload" method="POST" action="{{url_for('uploads')}}" 
                 enctype="multipart/form-data" >
                 <div class="form-group">
                     {% if photoType %}
@@ -21,7 +22,7 @@
                     <br>
                     <!-- <input type="submit" value="Upload" class="btn btn-success form-control"> -->
                 </div>
-                <div id="galleryOptionsWrapper" class="form-group">       
+                <div id="galleryOptionsWrapper" hidden class="form-group">       
 
                     {% if galleryOptions %}
                         <label for="galleryOptions">Options</label>
@@ -43,7 +44,7 @@
                 </div>
                 <div class="form-group">
                     <label for="photoGallery">Select Photo to Upload</label>
-                    <input type="file" name="file" id="txtFileUpload" class="form-control"
+                    <input type="file" name="file" id="txtFileUpload" class="form-control-file"
                     multiple=multiple>
                     <br>
                     <input id="btnUpload" type="submit" value="Upload" class="btn btn-success form-control">
