@@ -98,6 +98,35 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     }
     
+    $('#setupScreen').on('show.bs.modal', function (event) {
+        let menu = $(event.relatedTarget)
+        let modalTitle = menu.data('whatever');
+        let modal = $(this)
+        switch (modalTitle) {
+            case "Gallery Section":
+                modal.find('.modal-title').text(modalTitle)
+                modal.find('.modal-label').text("Event Name")
+                break;
+            case "Sub Council Executives":
+                modal.find('.modal-title').text(modalTitle)
+                modal.find('.modal-label').text("Name of Executive")
+                break;
+            case "Zonal Executives":
+                modal.find('.modal-title').text(modalTitle)
+                modal.find('.modal-label').text("Name of Exco")
+                break;
+            case "Offices":
+                modal.find('.modal-title').text(modalTitle)
+                modal.find('.modal-label').text("Position")
+                break;
+    
+        
+            default:
+                break;
+        }
+            
+    })
+
     function uploadImageAjax(){
         const req = new XMLHttpRequest();
         req.headers = {
@@ -131,34 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // return false;
     }
     //setupScreen.on('show.bs.modal') = function(event)  {
-        $('#setupScreen').on('show.bs.modal', function (event) {
-        let menu = $(event.relatedTarget)
-        let modalTitle = menu.data('whatever');
-        let modal = $(this)
-        switch (modalTitle) {
-            case "Gallery Section":
-                modal.find('.modal-title').text(modalTitle)
-                modal.find('.modal-label').text("Event Name")
-                break;
-            case "Sub Council Executives":
-                modal.find('.modal-title').text(modalTitle)
-                modal.find('.modal-label').text("Name of Executive")
-                break;
-            case "Zonal Executives":
-                modal.find('.modal-title').text(modalTitle)
-                modal.find('.modal-label').text("Name of Exco")
-                break;
-            case "Offices":
-                modal.find('.modal-title').text(modalTitle)
-                modal.find('.modal-label').text("Position")
-                break;
-
-        
-            default:
-                break;
-        }
-        
-    })
+    
     // $('#exampleModal').on('show.bs.modal', function (event) {
     //     var button = $(event.relatedTarget) // Button that triggered the modal
     //     var recipient = button.data('whatever') // Extract info from data-* attributes
