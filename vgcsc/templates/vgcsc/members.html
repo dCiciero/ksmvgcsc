@@ -4,18 +4,19 @@
 {% block content %}
     <div id="member_page" class="card">
         <div class="card-body">
-            <h4>Member zone</h4>
+            <h6>Member zone - <span>{{ member.first_name + " "+ member.other_names+ " "+  member.last_name }}</span> </h6>
             {% if member %}
-            <table class="table table-sm table-bordered">
-                <thead>
+            <table class="table table-sm table-bordered table-hover table-striped ">
+                <caption><a class="btn btn-sm btn-primary" href="{{ url_for('editDirectory', opt = member.id) }}" role="button" >Edit Record</a></caption>
+                <thead class="thead-dark">
                     <tr>
                         <th>#</th>
                         <th>Details</th>
-                        <!-- <th>Settings</th> -->
+                        <!-- <th>Modify</th> -->
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <!-- <tr>
                         <td>First Name</td>
                         <td>{{ member.first_name }}</td>
                     </tr>
@@ -26,10 +27,11 @@
                     <tr>
                         <td>Last Name</td>
                         <td>{{ member.last_name }}</td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td>Phone</td>
                         <td>{{ member.phone }}</td>
+                        <!-- <td><a class="btn btn-sm btn-primary btn-block" href="#" role="button w-100" >Edit</a></td> -->
                     </tr>
                     <tr>
                         <td>Address</td>

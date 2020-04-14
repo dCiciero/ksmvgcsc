@@ -4,7 +4,18 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Directory of WBs</h5>
-            <table class="table table-sm table-hover">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <input type="text" name="search_exco" id="txt_search_members" 
+                    class="form-control form-control-sm " placeholder="Type name to search">
+                    
+                </div>
+                <!-- <div class="form-group col-md-3">
+                    <button class="btn btn-success btn-sm">Search</button>
+                </div> -->
+            </div>
+            {% if members %}
+            <table id="membersTable" class="table table-sm table-hover ">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -12,18 +23,24 @@
                         <th>Address</th>
                         <th>Email</th>
                         <th>Occupation</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Name</td>
-                        <td>Phone</td>
-                        <td>address</td>
-                        <td>email</td>
-                        <td>work</td>
-                    </tr>
-                </tbody>
+                    <tbody>
+                        {% for member in members -%}
+                        <tr>
+                            
+                            <td>{{  member.first_name|e+" "+(member.other_names if member.other_names != None else "")| trim()+" "+member.last_name |e }}</td>
+                            <td>{{ member.phone if member.phone != None else "" }}</td>
+                            <td>{{ member.address if member.address != None else ""   }}</td>
+                            <td>{{ member.email if member.email != None else ""  }}</td>
+                            <td>{{ member.occupation if member.occupation != None else ""  }}</td>
+                            <td><a href="{{ url_for('editDirectory', opt = member.id) }}" class="btn btn-sm btn-primary adm-button">Edit</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
             </table>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

@@ -1,35 +1,33 @@
 <!DOCTYPE HTML>
 <title>{% block title %}{% endblock %} - Knights of St. Mulumba VGC SC</title>
-<!-- Fonts -->
-<link rel="stylesheet" href="{{ url_for('.static', filename='vgcsc/css/fontawesome.min.css') }}">
-<link rel="stylesheet" href="{{ url_for('.static', filename='vgcsc/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='vgcsc/css/bootstrap4/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='vgcsc/css/font-awesome.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='vgcsc/css/jquery.bxslider.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='vgcsc/css/isotope.css') }}" media="screen" />
+<link rel="stylesheet" href="{{ url_for('.static', filename='vgcsc/css/animate.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='vgcsc/js/fancybox/jquery.fancybox.css') }}" type="text/css" media="screen" />
+<link href="{{ url_for('.static', filename='vgcsc/css/prettyPhoto.css') }}" rel="stylesheet" />
+<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+<!-- <link href="{{ url_for('.static', filename='vgcsc/css/style.css') }}" rel="stylesheet" /> -->
 <link rel="stylesheet" href="{{ url_for('.static', filename='vgcsc/css/vgcsc.css') }}">
 <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
     
-<section>
-  {% block navbar %}
-  <!-- <div id="banner" class="nav nav-bar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url_for('index') }}" >
-            <img id="banner_logo" src="../static/images/neulogo.png"  class="img-responsive" 
-              width="70" height="70" alt=""> 
-            <p  id="banner_head"></p>
-            <p  id="banner_head2"><sup style="margin: 0px;">&reg;</sup></p>
-            <p  id="banner_head3"></p>
-        </a>
-        
-    </div>
-  </div> -->
+<!-- <section> -->
+  <header>
     <nav class="fixed-top">
       <div id="banner" class="nav nav-bar-expand-lg">
           <div class="container">
+            <div class="logo">
               <a class="navbar-brand" href="{{ url_for('index') }}" >
-                  <img id="banner_logo" src="../static/images/Logo_KSM_Site.PNG"  class="img-responsive"> 
-                  <!-- <p  id="banner_head"></p>
-                  <p  id="banner_head2"><sup style="margin: 0px;">&reg;</sup></p>
-                  <p  id="banner_head3"></p> -->
+                <img id="banner_logo" src="../static/images/Logo_KSM_Site.PNG"  class="img-responsive"> 
+                <!-- <p  id="banner_head"></p>
+                <p  id="banner_head2"><sup style="margin: 0px;">&reg;</sup></p>
+                <p  id="banner_head3"></p> -->
               </a>
-              
+            </div>
+            <div class="ksm-motto">
+              <p>Tempus Fugit Memento Mori</p>
+            </div>                
           </div>
         </div>
         <div class="navbar navbar-expand-md navbar-dark bg-success">
@@ -48,29 +46,29 @@
                           Setups
                         </a>
                         <div class="dropdown-menu" aria-labelledby="galleryDropdown">
-                          <a class="dropdown-item" data-toggle="modal" data-target="#setupScreen" 
-                            data-whatever="Gallery Section" data-backdrop="static" data-keyboard="false"
-                            href="{{ url_for('setups') }}">Gallery Section
+                          <a class="dropdown-item" href="{{ url_for('setups',option='gallery') }}">Gallery Section
                           </a>
-                          <a class="dropdown-item" data-toggle="modal" data-target="#setupScreen" 
-                            data-whatever="Sub Council Executives" data-backdrop="static" data-keyboard="false"
-                            href="{{ url_for('setups') }}">Sub Council Executives
+                          <a class="dropdown-item" href="{{ url_for('setups',option='news') }}">News
                           </a>
-                          <a class="dropdown-item" data-toggle="modal" data-target="#setupScreen" 
-                            data-whatever="Zonal Executives" data-backdrop="static" data-keyboard="false"
-                            href="{{ url_for('setups') }}">Zonal Executives
+                          <a class="dropdown-item" href="{{ url_for('setups',option='sub_exco') }}">Sub Council Executives
                           </a>
-                          <a class="dropdown-item" data-toggle="modal" data-target="#setupScreen" 
-                            data-whatever="Offices" data-backdrop="static" data-keyboard="false"
-                            href="{{ url_for('setups') }}">Offices
+                          <a class="dropdown-item" 
+                            href="{{ url_for('setups',option='zonal_exco') }}">Zonal Executives
+                          </a>
+                          <a class="dropdown-item" href="{{ url_for('setups',option='office') }}">Offices
                           </a>
                           <a class="dropdown-item" href="{{ url_for('uploads') }}">Uploads</a>
                         </div>
-                        <!-- <div class="dropdown-menu" aria-labelledby="galleryDropdown">
-                          <a class="dropdown-item" href="{{ url_for('setups') }}">Sub Council Executives</a>
+                        <!-- 
+                           <a class="dropdown-item" data-toggle="modal" data-target="#setupScreen" 
+                            data-whatever="Sub Council Executives" data-backdrop="static" data-keyboard="false"
+                            href="#">Sub Council Executives
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="galleryDropdown">
+                          <a class="dropdown-item" href="#">Sub Council Executives</a>
                         </div>
                         <div class="dropdown-menu" aria-labelledby="galleryDropdown">
-                          <a class="dropdown-item" href="{{ url_for('setups') }}">Zonal Executives</a>
+                          <a class="dropdown-item" href="#">Zonal Executives</a>
                         </div> -->
                       </li>
                   </ul>
@@ -87,18 +85,20 @@
         </div>
         
     </nav>
-  {% endblock %}
-</section>
+  </header>
+    
+  
+<!-- </section> -->
 <br>
-<section class="content">
+<br>
+<!-- <section class="content"> -->
+<div class="content">
     
   <div class="container">
-    <header>
-      {% block header %}
-      {% endblock %}
-    </header>
+    
     {% for category, message in get_flashed_messages(with_categories=true) %}
-    <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    <div id="admin-alert" class="alert alert-{{category}} alert-dismissible fade show" 
+      data-fade="3000" data-dismiss="alert" role="alert">
       {{ message }}
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -279,13 +279,22 @@
     </div>
   
   </div> <!-- container-->
-</section>
+</div>  <!-- content-->
+<!-- </section> -->
 
 <!-- Bootstrap related JavaScript -->
-
-<script src="{{ url_for('.static', filename='vgcsc/js/jquery-3.3.1.slim.min.js') }}"></script>
-<script src="{{ url_for('.static', filename='vgcsc/js/bootstrap.min.js') }}"></script>
-<script src="{{ url_for('.static', filename='vgcsc/js/vgcsc.js') }}"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+<script src="{{ url_for('.static', filename='vgcsc/js/jquery-2.1.1.min.js') }}"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<!-- <script src="{{ url_for('.static', filename='vgcsc/js/bootstrap.min.js') }}"></script> -->
+<script src="{{ url_for('.static', filename='vgcsc/js/bootstrap4/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('.static', filename='vgcsc/js/wow.min.js') }}"></script>
+<script src="{{ url_for('.static', filename='vgcsc/js/fancybox/jquery.fancybox.pack.js') }}"></script>
+<script src="{{ url_for('.static', filename='vgcsc/js/jquery.easing.1.3.js') }}"></script>
+<script src="{{ url_for('.static', filename='vgcsc/js/jquery.bxslider.min.js') }}"></script>
+<script src="{{ url_for('.static', filename='vgcsc/js/jquery.prettyPhoto.js') }}"></script>
+<script src="{{ url_for('.static', filename='vgcsc/js/jquery.isotope.min.js') }}"></script>
+<script src="{{ url_for('.static', filename='vgcsc/js/functions.js') }}"></script>
+<script src="{{ url_for('.static', filename='vgcsc/js/vgcsc.js') }}"></script> -->
+<script>
+  wow = new WOW({}).init();
+</script>

@@ -12,6 +12,8 @@ class Access(UserMixin, db.Model):
     username = db.Column(db.String(50), unique=True, index=True, nullable=False)
     email = db.Column(db.String(120), nullable=False, index=True, unique=True)
     password_hash = db.Column(db.String(128), nullable=False)
+    is_admin = db.Column(db.Boolean, default=False)
+    # member_id = db.Column(db.Integer, db.ForeignKey('membership.id'), nullable=False)
     # member_id = db.Column
 
     def __repr__(self):
@@ -27,6 +29,21 @@ class Access(UserMixin, db.Model):
 def load_user(id):
     return Access.query.get(int(id))
 
+# class Role(db.Model):
+#     """
+#     Create a Role table
+#     """
+#     __tablename__ = 'roles'
+
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(60), unique=True)
+#     description = db.Column(db.String(200))
+#     employees = db.relationship('Employee', backref='role',
+#                                 lazy='dynamic')
+
+#     def __repr__(self):
+#         return '<Role: {}>'.format(self.name)
+
 # class PersonModel(db.Model):
 #     __abstract__ = True
 #     username=db.Column(db.String(50), nullable=False)
@@ -38,36 +55,52 @@ def load_user(id):
 #     phone1 = db.Column(db.String(20), nullable=False)
 #     phone2 = db.Column(db.String(20), nullable=True)
 
+
+# class Investiture(db.Model):
+#  __table__ = investitures
+
 class Profile(db.Model):
     __tablename__ = "profiles"
     id = db.Column(db.Integer, primary_key=True)
-    username=db.Column(db.String(50), nullable=False)
-    first_name=db.Column(db.String(50), nullable=False)
-    last_name=db.Column(db.String(50), nullable=False)
-    other_names=db.Column(db.String(75), nullable=True)
-    email = db.Column(db.String(120), nullable=False)
-    address = db.Column(db.String(200), nullable=False)
-    phone1 = db.Column(db.String(20), nullable=False)
-    phone2 = db.Column(db.String(20), nullable=True)
-    occupation = db.Column(db.String(150), nullable=True)
-    work_place = db.Column(db.String(150), nullable=True)
-    work_address = db.Column(db.String(200), nullable=True)
+    username=db.Column(db.String(50))
+    first_name=db.Column(db.String(50))
+    last_name=db.Column(db.String(50))
+    other_names=db.Column(db.String(75))
+    email = db.Column(db.String(120))
+    address = db.Column(db.String(200))
+    phone1 = db.Column(db.String(20))
+    phone2 = db.Column(db.String(20))
+    occupation = db.Column(db.String(150))
+    work_place = db.Column(db.String(150))
+    work_address = db.Column(db.String(200))
 
-class Membership(db.Model):
-    __tablename__ = "memberships"
+class Member(db.Model):
+    __tablename__ = "members"
     id = db.Column(db.Integer, primary_key=True)
     first_name=db.Column(db.String(50), nullable=False)
     last_name=db.Column(db.String(50), nullable=False)
-    other_names=db.Column(db.String(75), nullable=True)
+    other_names=db.Column(db.String(75))
     email = db.Column(db.String(120), nullable=False)
     address = db.Column(db.String(200), nullable=False)
-    phone = db.Column(db.String(20), nullable=True)
+    phone = db.Column(db.String(20))
+    phone2 = db.Column(db.String(20))
     birth_date = db.Column(db.Date, index=True, default=datetime.utcnow)
     initiation_date = db.Column(db.Date, index=True, default=datetime.utcnow)
     investiture_date = db.Column(db.Date, index=True, default=datetime.utcnow)
-    state_of_origin = db.Column(db.String(20), nullable=True)
-    home_town = db.Column(db.String(120), nullable=True)
-    access_id = db.Column(db.Integer, db.ForeignKey('access.id'), nullable=False)
+    place_initiated = db.Column(db.String(150))
+    initiated_sc = db.Column(db.String(150))
+    current_sc = db.Column(db.String(150))
+    degree = db.Column(db.String(10))
+    ksmno = db.Column(db.String(10))
+    status = db.Column(db.String(20))
+    nationality = db.Column(db.String(100))
+    state_of_origin = db.Column(db.String(20))
+    home_town = db.Column(db.String(120))
+    occupation = db.Column(db.String(150))
+    work_title = db.Column(db.String(100))
+    work_place = db.Column(db.String(150))
+    work_address = db.Column(db.String(200))
+    # access_id = db.Column(db.Integer, db.ForeignKey('access.id'), nullable=False)
 
 
 class DisplayPix(db.Model):
@@ -90,6 +123,13 @@ class GalleryOptions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False) 
     # PhotoGallery = db.Column(db.Integer, db.ForeignKey('photo_gallery.id'), nullable=False)
+
+class Offices(db.Model):
+    __tablename__  = "offices"
+    id = db.Column(db.Integer, primary_key=True)
+    post = db.Column(db.String(120))
+    alias = db.Column(db.String(20))
+    arm = db.Column(db.String(20))
 
 class Executive(db.Model):
     __tablename__ = "executives"

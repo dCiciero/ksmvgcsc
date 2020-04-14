@@ -1,0 +1,149 @@
+{% extends 'base_member.html' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            {% if details %}
+                <h6 class="card-title">Details of {{ details.first_name|e+" "+(details.other_names if details.other_names != None else "")| trim()+" "+details.last_name |e }}</h6>
+           
+            
+                <hr>
+                
+                {% if form %}
+                <form method="POST" novalidate>
+                    {{ form.hidden_tag() }}
+                    <div class="form-row">
+                        <!-- <div class="form-group col-md-6">
+                            {{ form.firstname(size=32, id="txt_name",  class="form-control form-control-sm", placeholder="Name of Executive") }}
+                            {% for error in form.firstname.errors %}
+                                <span style="color: red;">[{#{ error #}}]</span>
+                            {% endfor %}
+                        </div> -->
+                        <div class="form-group col-md-2">
+                            {{form.ksmno.label}}
+                            {{form.ksmno(size=32, class='form-control form-control-sm', value=details.ksmno )}}
+                        </div>
+                        <div class="form-group col-md-2">
+                            <!-- <label for="txt_fname">First Name</label> -->
+                            {{form.firstname.label}}
+                            {{form.firstname(size=32, class='form-control form-control-sm', value=details.first_name )}}
+                            <!-- <input type="text" value="{{ details.first_name }}" class="form-control form-control-sm" name="txt_fname"> -->
+                        </div>
+                        <div class="form-group col-md-2">
+                            {{form.midname.label}}
+                            {{form.midname(size=32, class='form-control form-control-sm', value=details.other_names )}}
+                            <!-- <label for="txt_oname">Other Names</label>
+                            <input type="text" value="{{ details.other_names }}" class="form-control form-control-sm" name="txt_oname"> -->
+                        </div>
+                        <div class="form-group col-md-2">
+                            {{form.lastname.label}}
+                            {{form.lastname(size=32, class='form-control form-control-sm', value=details.last_name )}}
+                            <!-- <label for="txt_lname">Last Name</label>
+                            <input type="text" value="{{ details.last_name }}" class="form-control form-control-sm" name="txt_lname"> -->
+                        </div>
+                        <div class="form-group col-md-2">
+                            {{form.phone1.label}}
+                            {{form.phone1(size=32, class='form-control form-control-sm', value=details.phone )}}
+                            <!-- <label for="txt_oname">Mobile</label>
+                            <input type="text" value="{{ details.phone }}" class="form-control form-control-sm" name="txt_phone1"> -->
+                        </div>
+                        <div class="form-group col-md-2">
+                            {{form.phone2.label}}
+                            {{form.phone2(size=32, class='form-control form-control-sm', value=details.phone2 )}}
+                            <!-- <label for="txt_lname">Mobile 2</label>
+                            <input type="text" value="{{ details.phone2 }}" class="form-control form-control-sm" name="txt_phone1"> -->
+                        </div>
+                    </div> <!-- end form-row -->
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            {{form.dob.label}}
+                            {{form.dob(size=32, class='form-control form-control-sm', value=details.birth_date, placeholder='dd/mm/yyyy' )}}
+                        </div>
+                        <div class="form-group col-md-2">
+                            {{form.lastInvested.label}}
+                            {{form.lastInvested(size=32, class='form-control form-control-sm', value=details.investiture_date|e, placeholder='dd/mm/yyyy' )}}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.email.label }}
+                            {{ form.email(size=32, class='form-control form-control-sm', value=details.email) }}
+                        </div>
+                        <div class="form-group col-md-2"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    {{ form.nationality.label }}
+                                    {{ form.nationality(size=32, class='form-control form-control-sm', value=details.nationality) }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    {{ form.state_of_origin.label }}
+                                    {{ form.state_of_origin(size=32, class='form-control form-control-sm', value=details.state_of_origin) }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    {{ form.home_town.label }}
+                                    {{ form.home_town(size=32, class='form-control form-control-sm', value=details.home_town) }}
+                                    <!-- <label for="txt_oname">Nationality</label> -->
+                                    <!-- <input type="text" value="{{ details.nationality }}" class="form-control form-control-sm" name="txt_country"> -->
+                                </div>
+                                <div class="form-group col-md-6">
+                                    {{ form.occupation.label }}
+                                    {{ form.occupation(size=32, class='form-control form-control-sm', value=details.occupation) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form.address.label }}
+                            {{ form.address( class='form-control form-control-sm', cols="10", rows="5",draggable="false", value=details.address) }}
+                        </div>
+                    </div> <!-- end form-row -->
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            {{ form.degree_in_order.label }}
+                            {{ form.degree_in_order(size=32, class='form-control form-control-sm', value=details.degree) }}
+                            <!-- <label for="txt_degree">Degree in Order</label>
+                            <input type="text" value="{{ details.degree }}" class="form-control form-control-sm" 
+                                id="txt_degree" name="txt_degree"> -->
+                        </div>
+                        <div class="form-group col-md-2">
+                            {{ form.initiated_sc.label }}
+                            {{ form.initiated_sc(size=32, class='form-control form-control-sm', value=details.initiated_sc) }}
+                            <!-- <label for="txt_initiated_sc">Initiated Sub Council</label>
+                            <input type="text" id="txt_initiated_sc" value="{{ details.initiated_sc }}" 
+                                class="form-control form-control-sm" name="txt_initiated_sc"> -->
+                        </div>
+                        <div class="form-group col-md-2">
+                            {{ form.current_sc.label }}
+                            {{ form.current_sc(size=32, class='form-control form-control-sm', value=details.current_sc) }}
+                            <!-- <label for="txt_lname">Current Sub Council</label>
+                            <input type="text" value="{{ details.current_sc }}" class="form-control form-control-sm" name="txt_lname"> -->
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            {{ form.place_initiated.label }}
+                            {{ form.place_initiated(size=32, class='form-control form-control-sm', value=details.place_initiated) }}
+                            <!-- <label for="txt_fname">Initiated At</label>
+                            <input type="text" value="{{ details.place_initiated }}" class="form-control form-control-sm" name="txt_fname"> -->
+                        </div>
+                        <div class="form-group col-md-2">
+                            {{ form.date_initiated.label }}
+                            {{ form.date_initiated(size=32, type='date', class='form-control form-control-sm', value=details.initiation_date, placeholder='dd/MM/YYYY')}}
+                            <!-- <label for="txt_oname" >Date of last Investiture</label>
+                            <input type="text" value="{{ details.investiture_date }}" class="form-control form-control-sm" name="txt_oname"> -->
+                        </div>
+                        <div class="form-group col-md-2">
+                            {{ form.membership_status.label }}
+                            {{ form.membership_status(size=32, class='form-control form-control-sm', value=details.status) }}
+                            <!-- <label for="txt_lname">Status</label>
+                            <input type="text" value="{{ details.Status }}" class="form-control form-control-sm" name="txt_lname"> -->
+                        </div>
+                    </div> <!-- end form-row -->
+                    <button type="submit" class="btn btn-sm btn-success">Save Record</button>
+                </form> 
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

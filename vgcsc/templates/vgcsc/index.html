@@ -1,134 +1,190 @@
 {% extends 'base.html' %}
 {% block title %}Home Page{% endblock %}
-{% block carousel %}
 
-    <div id="indicators" class="row carousel slide carousel-fade" data-ride="carousel">
-      <!-- <div class="col-md-2"></div> -->
-      <div class="carousel-inner col-xl-7 col-md-7 col-sm-12 ">
-          <ol class="carousel-indicators">
-            <li data-target="#indicators" data-slide-to="0" class="active"></li>
-            <li data-target="#indicators" data-slide-to="1"></li>
-            <li data-target="#indicators" data-slide-to="2"></li>
-            <li data-target="#indicators" data-slide-to="3"></li>
-          </ol>
-        <div class="carousel-item active">
-          <img src="../../static/images/inaug3.JPG" class="d-block w-100 img-thumbnail" style="height:350px" alt="g">
-        </div>
-        <div class="carousel-item">
-          <img src="../../static/images/inaug2.JPG" class="d-block w-100 img-thumbnail" style="height:350px" alt="g">
-        </div>
-        <div class="carousel-item">
-          <img src="../../static/images/inaug1.JPG" class="d-block w-100 img-thumbnail" style="height:350px" alt="h">
-        </div>
-        <div class="carousel-item">
-          <img src="../../static/images/inaug4.JPG" class="d-block w-100 img-thumbnail" style="height:350px" alt="h">
-        </div>
-        <a class="carousel-control-prev" href="#indicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#indicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-      </div> <!-- end carousel-inner, col-md-8-->
-      {% if news_feed %}
-      <div id="news" class="col-xl-4 col-md-4 col-sm-12" >
-        <!-- <div class="card">
-          <div class="card-body"> -->
-            <!-- <h5 class="card-title" style="text-align:center;" >KSM Current Affairs</h5> background-color: #696 -->
-            <span class="news_head ">Information Corner</span>
-            <div class="list-group">
-            {% for news in news_feed %}
-              <a href="#" class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-between ">
-                  <h6 class="mb-1 news_title">{{ news.topic }}</h6>
-                  <small class="news_content"> {{news.date_created}}</small>
-                </div>
-                <p class="mb-1 news_content">{{ news.content[:150] }} <span>...</span></p>
-                <small>Donec id elit non mi porta.</small>
-              </a>
-            {% endfor %}
-            </div> <!-- end list-group -->
-          <!-- </div> <!- end card-body ->
-        </div> end card -->
-      </div> <!-- end news -->
-      {% endif %}
-      <!-- <div id="news" class="col-xl-4 col-md-4 col-sm-12" >
-        <div class="card" style="height:350px; ">
-          <div class="card-body">
-            
-            <span class="card-title news_head ">KSM VGC News</span>
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between ">
-                    <h6 class="mb-1 news_title">2nd Degree Inauguartion</h6>
-                    <small>3 days ago</small>
-                  </div>
-                  <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                  <small>Donec id elit non mi porta.</small>
-                </a>
-                
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h6 class="mb-1 news_title">List group item heading</h6>
-                    <small class="text-muted">3 days ago</small>
-                  </div>
-                  <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                  <small class="text-muted">Donec id elit non mi porta.</small>
-                </a>
-              </div>
-          </div>
-        </div>
-      </div> -->
-      
-    </div> <!-- end carousel div, row id=indicators -->
+{% block carousel %}
     
-   
 {% endblock %}
 {% block content %}
-<div class="row">
-    <div class="col-md-7 col-sm-12">
-      <div id="history_pane" class="card">
-        <div class="card-body">
-            <h5 class="history_title card-title" >A Brief history of VGC Sub-Council</h5>
-            <p class="">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed sem ut diam accumsan maximus sit amet eget risus. Nulla maximus mollis venenatis. Maecenas sem leo, placerat id nisl placerat, pellentesque semper ante. Pellentesque tincidunt finibus congue. Proin at odio vitae tortor consectetur fringilla id nec lacus. Nunc pulvinar magna euismod lorem bibendum gravida. Ut pellentesque cursus nulla at varius. Etiam fermentum enim egestas mi venenatis imperdiet. Nunc sed mi ac tortor condimentum porttitor in ut dolor. Duis neque magna, tincidunt a elit nec, iaculis rhoncus nisi. Duis ac purus non diam lobortis rhoncus in eu urna. Nulla sollicitudin metus non dapibus mollis. Etiam interdum ut augue sit amet tincidunt. Vivamus ex metus, convallis vestibulum odio in, pharetra mattis ligula.
-
-              Proin mollis, est a consequat molestie, elit purus interdum est, sed luctus mauris lectus a tellus. Morbi semper justo id mauris pretium elementum. Nunc venenatis convallis blandit. Maecenas suscipit tortor eros, eget fringilla erat rutrum nec. Fusce viverra pretium eros, ac vulputate ex convallis placerat. Donec non velit volutpat, pulvinar justo vel, ullamcorper orci. Praesent malesuada dictum tellus, id imperdiet neque pulvinar non.
-              
-              Fusce auctor, sapien vel pharetra iaculis, justo dui auctor felis, nec pharetra tellus sapien at turpis. Nam sem mi, luctus sit amet ipsum vel, malesuada eleifend metus. Cras vel tincidunt elit. Maecenas convallis faucibus nulla sed convallis. Cras vel est libero. In laoreet mi posuere, rutrum lacus vitae, laoreet ante. Sed gravida lorem eu tellus laoreet volutpat. Cras sed lorem sed enim bibendum iaculis a vel augue. Nullam finibus turpis justo, eget euismod leo efficitur dictum. Curabitur egestas, mauris sed interdum scelerisque, tortor odio convallis risus, sit amet ornare massa est eget lectus. Phasellus convallis quam quis ligula efficitur euismod. Duis venenatis sed sapien ut blandit. Nam sed felis ultrices, venenatis lorem ut, sollicitudin tortor. Curabitur pretium tristique lobortis.
-            </p> 
-          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-        </div>
-      </div> <!-- history pane-->
-    </div> <!-- col-md-8 -->
-    <div class="col-md-4">
-      <div class="row">
-        <div class="card">
-          <div class="card-header">
-            KSM Anthem
-          </div>
+  <div class="row">
+      <div class="col-lg-7 mb-5">
+        <div id="history_pane" class="card">
+          <div class="card-header" >Welcome to the official site VGC Sub-Council</div>
           <div class="card-body">
-            <!-- <h6 class="card-title">KSM Anthem</h6> -->
-            <p class="card-text">Mathias Kalemba, dear Saint Mulumba
-                Brave Champion of faith for all Africa
-                Our Patron art thou do pray for your Knights
-                Your faith and courage to emulate.
-            </p>
-            <a href="#" class="card-link">Full Anthem</a>
+              <!-- <h5 class="history_title card-title" >Welcome to the official site VGC Sub-Council</h5> -->
+              <!-- <h5 class="history_title card-title" >A Brief history of VGC Sub-Council</h5> -->
+              <p class="card-text">
+                {{history[:800]}}
+              </p> 
+              <a href="#" class="card-link">More ...</a>
+            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
           </div>
-        </div>
-      </div> <!-- row -->
-      <div class="row">
-        <div class="card">
-          <div class="card-header">LSM Anthem</div>
+        </div> <!-- history pane-->
+      </div> <!-- col-lg-8 -->
+      <div class="col-lg-5 mb-5 col-xs-12">
+        {% if news_feed %}
+        <div id="news" >
+          <div class="card">
+            <div class="card-header">
+              Information Corner 
+            </div>
+            <div class="card-body"> 
+              <!-- <h5 class="card-title" style="text-align:center;" >Information Corner </h5> background-color: #696 -->
+              <!-- <!-- <span class="news_head ">Information Corner</span> -->
+              <div class="list-group">
+              {% for news in news_feed %}
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between ">
+                    <h6 class="mb-1 news_title">{{ news.topic }}</h6>
+                    <small class="news_content"> {{news.date_created}}</small>
+                  </div>
+                  <p class="mb-1 news_content">{{ news.content[:100] }} <span>...</span></p>
+                  <small>Donec id elit non mi porta.</small>
+                </a>
+              {% endfor %}
+              </div> <!-- end list-group -->
+            </div> <!-- end card-body -->
+          </div> <!--end card -->
+        </div> <!-- end news -->
+        {% endif %}
+      </div> <!-- end col -->
+  </div>
+
+  <!-- Carousel section  -->
+  <div id="home-carousel" class="row">
+    <!-- <div class=" col-lg-2 col-xs-12 "></div> -->
+    <div class=" col-lg-12 col-xs-12 w-100 ">
+      <div id="indicators" class="align-items-center my-5 carousel slide carousel-fade" data-ride="carousel">
+        <!-- <div class="col-md-2"></div> -->
+        <div class="carousel-inner">
+          {% if carousel %}
+            <!-- <p>{{ carousel.count()  }}</p> -->
+            
+              <ol class="carousel-indicators">
+                
+                <li data-target="#indicators" data-slide-to="0"></li>
+                <li data-target="#indicators" data-slide-to="1"></li>
+                <li data-target="#indicators" data-slide-to="2"></li>
+                <li data-target="#indicators" data-slide-to="3"></li>
+              </ol>
+            {% for img in carousel %}
+            {% set i = loop.index0 %}
+              {% if i == 0 %}
+              <div class="carousel-item active img-responsive">  
+                <img src="../../static/images/uploads/{{ img.name }}" class="img-fluid rounded d-block w-100" alt="{{img.caption}}">
+                <div class="carousel-caption d-none d-md-block">
+                  
+                  <h5> {{ img.caption }}</h5>
+                </div>
+              </div>
+              {% else %}
+                <div class="carousel-item img-responsive">  
+                  <img src="../../static/images/uploads/{{ img.name }}" class="img-fluid rounded d-block w-100" alt="{{img.caption}}">
+                  <div class="carousel-caption d-none d-md-block">
+                    
+                    <h5> {{ img.caption }}</h5>
+                  </div>
+                </div>
+              {% endif %}
+              <!-- <div class="carousel-item active">  
+                <img src="../../static/images/uploads/{{ img.name }}" class="d-block w-100 img-thumbnail" style="height:350px" alt="g">
+              </div> -->
+            {% endfor %}
+          {% else %}
+              <h1>None</h1>
+          {% endif %}
+          <a class="carousel-control-prev" href="#indicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#indicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+        </div> <!-- end carousel-inner, col-md-8-->
+      </div> <!-- end carousel div,  id=indicators -->
+    </div> <!-- end col -->
+
+  </div> <!-- end row -->
+ 
+  <div class="row">
+    <div class="col-lg-4 mb-5">
+      <!-- <div class="row">
+        <div class="col-lg-12"> -->
+          <div class="card anthem">
+            <p class="card-header">
+              KSM Anthem
+            </p>
+            <div class="card-body">
+              <!-- <h6 class="card-title">KSM Anthem</h6> -->
+              <!-- <ol class="card-text">
+                <li>Mathias Kalemba, dear Saint Mulumba
+                  Brave Champion of faith for all Africa
+                  Our Patron art thou do pray for your Knights
+                  Your faith and courage to emulate.
+                  </li>
+                <li>With four limbs chopped off, you still derided
+                  And strongly disdained satanic fury
+                  You lingered limbless Thursday thro’ Sunday
+                  To God your soul then commended.</li> -->
+              </ol>
+              <p class="card-text">Mathias Kalemba, dear Saint Mulumba
+                  Brave Champion of faith for all Africa
+                  Our Patron art thou do pray for your Knights
+                  Your faith and courage to emulate.
+              </p>
+              <a href="#" class="card-link">Full Anthem</a>
+            </div>
+          </div>
+        <!-- </div>
+      </div> end row -->
+      <!-- <p></p> -->
+    </div> <!-- col-lg-4 -->
+    <!-- <div class="row"> -->
+      <div class="col-lg-4">
+        <div class="card anthem">
+          <div class="card-header">Ladies of St. Mulumba (LSM)</div>
           <div class="card-body">
             <!-- <h5 class="card-title">LSM Anthem</h5> -->
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text">The Ladies of the Order of Knights of 
+              St. Mulumba Nigeria are the wives of Knights of St. Mulumba. 
+              The LSM is headed at the National Level by the Noble President, 
+              at the Metropolitan Council by the Worthy President and at the 
+              Subordinate councils by Sub council Presidents.</p>
           </div>
         </div>
-      </div> <!-- row -->
-    </div> <!-- col-md-4 -->
+      </div>
+      <div class="col-lg-4 mb-5">
+        <div class="flip-card" tabIndex="0">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="card anthem">
+                <div class="card-header">Ladies of St. Mulumba (LSM)</div>
+                <div class="card-body">
+                  <!-- <h5 class="card-title">LSM Anthem</h5> -->
+                  <p class="card-text">The Ladies of the Order of Knights of 
+                    St. Mulumba Nigeria are the wives of Knights of St. Mulumba. 
+                    The LSM is headed at the National Level by the Noble President, 
+                    at the Metropolitan Council by the Worthy President and at the 
+                    Subordinate councils by Sub council Presidents.</p>
+                </div>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <!-- <h3>Whoaaa!!!</h3> -->
+              <div class="card anthem">
+                <div class="card-header">LSM Anthem</div>
+                <div class="card-body">
+                  <p class="card-text">
+                    <ol>
+                      <li>In Jesus Tiriumphant</li>
+                    </ol>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- </div> end row -->
   </div>
 {% endblock %}

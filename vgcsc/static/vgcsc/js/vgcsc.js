@@ -1,32 +1,52 @@
-document.addEventListener('DOMContentLoaded', () => {
+// var path = window.location.pathname;
+// var page = path.split("/").pop();
+// console.log( page );
+// var btnSetup ;
+window.addEventListener('DOMContentLoaded', () => {
     // alert('Welcome')
-    caption = document.querySelector('#photoCaption');
-    options = document.querySelector('#galleryOptionsWrapper');
-    captionText = document.querySelector('#txtcaption');
-    file = document.querySelector('#txtFileUpload');
-    caption.style.display = "none";
-    options.style.display = "none";
-    
-    let gallerySection = document.querySelector('#gallerySelection'); //gets the gallery section's dropdown
+
+    let caption = document.querySelector('#photoCaption');
+    let options = document.querySelector('#galleryOptionsWrapper');
+    let captionText = document.querySelector('#txtcaption');
+    let uploadFile = document.querySelector('#txtFileUpload');
+      
+    let uploadType = document.querySelector('#uploadType'); //gets the gallery section's dropdown
     let galleryOptions = document.querySelector('#galleryOptions'); //gets the galler option's dropdown
     let btnUpload = document.querySelector('#btnUpload')
-    let alert_box = document.querySelector('.alert')
     let setupScreen = document.querySelector('#setupScreen');
-    // galleryOptions.onchange = () =>{
-    //     console.log(galleryOptions.value)
-    // }
-    gallerySection.value = 1
-    caption.style.display = "block";
-    gallerySection.onchange = ()=>{
-        if (gallerySection.value == 1)
-        {
-            caption.style.display = "block";
-            options.style.display = "none";
-        }
-        else
-        {
-            caption.style.display = "none";
-            options.style.display = "block";
+    let msgBox = $("#alertBox");
+    let display = document.querySelector('#alert-msg')
+    let msg = '';
+    let files = '';
+    let search_exco = document.querySelector('#txt_search_exco')
+    let search_member = document.querySelector('#txt_search_members')
+    let lookupTable = document.querySelector('#membersTable')
+    let stable = document.querySelector("#exco_table");
+    
+    function closeAlertBox(){
+        window.setTimeout(function () {
+            $("#alertBox").fadeOut(300)
+        }, 3000);
+    } 
+
+    if(uploadType != null) {
+        uploadType.onchange = ()=>{
+            console.log(uploadType.value)
+            if (uploadType.value == 1)
+            {
+                caption.style.display = "block";
+                options.style.display = "none";
+            }
+            else if (uploadType.value == 2)
+            {
+                caption.style.display = "none";
+                options.style.display = "block";
+            }
+            else
+            {
+                caption.style.display = "none";
+                options.style.display = "none";
+            }
         }
     }
 
@@ -34,18 +54,76 @@ document.addEventListener('DOMContentLoaded', () => {
     //     alert("form submitted");
     //     console.log("Form Submitted");
     // }
-
-    btnUpload.onclick = (e) => {
-         //e.preventDefault();
-        // alert(galleryOptions.value + ' '+ gallerySection.value)
-        // alert(captionText.innerText + ' '+ file.value)
-        // setTimeout(()=>{
-        //     alert("OK");
-            
-        // },3000)
-        //alert("After")
-        uploadImage();
-        //return false;
+    if(btnUpload != null){
+        btnUpload.onclick = (e) => {
+            // e.preventDefault();
+        
+            files = uploadFile.files;
+            console.log(files.length)
+            if (uploadType.value == 0){
+                console.log(`No option selected ${uploadType.value}, Make sure you select an option` )
+                msg = 'Make sure you select an option'
+                display.innerHTML = msg;
+                msgBox.fadeIn();
+                closeAlertBox();
+                return false
+            }
+            else if (uploadType.value == 1){
+                if (captionText.value === "") {
+                    console.log(`Enter a caption to descibe photo ${captionText.value}` )
+                    msg = `Enter a caption to descibe photo`
+                    display.innerHTML = msg;
+                    msgBox.fadeIn();
+                    closeAlertBox();
+                    return false
+                }
+            }
+            else{
+                if (galleryOptions.value == 0){
+                    console.log(`Select options ${galleryOptions.value}` )
+                    msg = `Select options `
+                    display.innerHTML = msg;
+                    msgBox.fadeIn();
+                    closeAlertBox();
+                    return false
+                }
+            }
+            if ('files' in uploadFile) {
+                if (files.length == 0) {
+                    msg = 'Please select a file to upload';
+                    console.log(msg)
+                    display.innerHTML = msg;
+                    msgBox.fadeIn();
+                    closeAlertBox();
+                    return false;
+                }
+                else{
+                    if (files.length == 1) {
+                        Img2Upload = files[0];
+                        console.log(Img2Upload.name)
+                        console.log(Img2Upload.size)
+                        // return false
+                    }
+                    else{
+                        if (uploadType.value == 1 && (files.length !== captionText.value.split(',').length)) {
+                            msg = 'Enter description corresponding to number of files uploading';
+                            console.log(msg)
+                            display.innerHTML = msg;
+                            msgBox.fadeIn();
+                            closeAlertBox();
+                            return false;
+                        }
+                        for (let index = 0; index < files.length; index++) {
+                            console.log(files[index].name)
+                            console.log(`File size: ${files.item(index).size}, in MB: ${Math.round(files.item(index).size/1024)} mb`)
+                            // console.log(files[index].size)
+                        }
+                    }
+                }
+            }
+            // uploadImage();
+            //return false;
+        }
     }
 
     function uploadImg() {
@@ -66,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function uploadImage(){
+        console.log("inside uploadImage")
         const req = new XMLHttpRequest();
         req.headers = {
             'Content-Type': 'application/json'
@@ -80,24 +159,48 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(req.responseText)
             const data = JSON.parse(req.responseText)
             console.log(data.success)
-            // document.querySelector('.alert').alert('show');
         }
+        req.onreadystatechange = () => {
+            
+        }
+
         console.log(`Caption: ${captionText.value}`)
         console.log(`Gallery Type: ${galleryOptions.value}`)
-        console.log(`Photo Type: ${gallerySection.options[galleryOptions.selectedIndex].text}`)
-        console.log(`File: ${file.value}`)
+        console.log(`Photo Type: ${uploadType.options[galleryOptions.selectedIndex].text}`)
+        console.log(`File: ${uploadFile.value}`)
+        console.log(`File: ${uploadFile.files}`)
         const data = new FormData();
         captionText = document.querySelector('#txtcaption');
         data.append('galleryType', galleryOptions)
-        data.append('fototype', gallerySection)
-        data.append('file', file)
+        data.append('fototype', uploadType)
+        data.append('file', files)
         data.append('caption', captionText.value)
 
-        //req.send(data)
+        req.send(data)
         alert("DONE")
-        return false;
+        // return false;
+    }
+
+    if (search_exco != null){
+        // let table = document.querySelector("#exco_table");
+        search_exco.onkeyup = () =>{
+            memberLookup(search_exco, stable);
+        }
+    }
+
+    if (search_member != null){
+        search_member.onkeyup = () =>{
+            memberLookup(search_member, lookupTable)
+        }
     }
     
+    // let setupScreen = document.getElementById('#setupScreen');
+    setupScreen.addEventListener('onshow', function () {
+        
+        console.log('heyy');
+    });
+
+    // This section handles the popup
     $('#setupScreen').on('show.bs.modal', function (event) {
         let menu = $(event.relatedTarget)
         let modalTitle = menu.data('whatever');
@@ -126,7 +229,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
             
     })
+    
+    function memberLookup(name, tablename){
+        // console.log(name);
+        let filter, table, tr, td, i, txtValue;
+        input = name; // document.getElementById(`${name}`);
+        filter = input.value.toUpperCase();
+        table = tablename;  //document.getElementById(`${tablename}`);
+        tr = table.getElementsByTagName("tr");
 
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+            }
+        }
+    }
     function uploadImageAjax(){
         const req = new XMLHttpRequest();
         req.headers = {
@@ -146,12 +270,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         console.log(`Caption: ${captionText.value}`)
         console.log(`Gallery Type: ${galleryOptions.value}`)
-        console.log(`Photo Type: ${gallerySection.options[galleryOptions.selectedIndex].text}`)
+        console.log(`Photo Type: ${uploadType.options[galleryOptions.selectedIndex].text}`)
         console.log(`File: ${file.value}`)
         const data = new FormData();
         captionText = document.querySelector('#txtcaption');
         data.append('galleryType', galleryOptions)
-        data.append('fototype', gallerySection)
+        data.append('fototype', uploadType)
         data.append('file', file)
         data.append('caption', captionText.value)
 
@@ -170,4 +294,18 @@ document.addEventListener('DOMContentLoaded', () => {
     //     modal.find('.modal-title').text('New message to ' + recipient)
     //     modal.find('.modal-body input').val(recipient)
     //   })
+
+    /* =================== */
+    // setup section btnSaveEntry
+    /* =================== */
+
+    let btnSetup = document.querySelector('#btnSaveEntry');
+    if (btnSetup != null){
+        // btnSetup = document.querySelector('#btnSaveEntry');
+        // console.log(document.getElementById('btnSaveEntry'));
+        // console.log(btnSetup)
+        // btnSetup.onclick = () => {
+        //     alert('clickcedd');
+        // }
+    }
 })
