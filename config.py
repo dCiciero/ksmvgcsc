@@ -13,4 +13,4 @@ class Config(object):
     TESTING = False
     CSRF_ENABLED = True
     APP_SETTINGS = os.environ.get('APP_SETTINGS')
-    FLASKS3_BUCKET_NAME = 'ogcicerobucket'
+    FLASKS3_BUCKET_NAME = 'awsogcicerobucket'
