@@ -14,57 +14,35 @@
     {% if excos %}
     <div class="card">
         <div class="card-body">
-            <h3 id="exco_head" class="card-title mb-4"></h3>
+            <h4 id="exco_head" class="card-title mb-4"> {{ option }}</h4>
             <div class="row">
                 {% for exco in excos %}
-                <div class="quotes">
-                    <div class="">
-                      <div class="box box1">
-                          {% if exco.where == "KSM" %}
-                            <img id="exco_photo" src="../../static/vgcsc/images/KSM_default.jpg" 
-                                class="rounded-circle mx-auto d-block" alt="...">
-                        <!-- <p>The first step toward success is taken when you refuse to be a captive of the environment in which you first find yourself. </p> -->
-                            <p class="card-text" ><small class="" >WB. {{ exco.name }}</small></p>
-                        {% else %}
-                            <img id="exco_photo" src="../../static/vgcsc/images/LSM_Default.jpg" 
-                                class="rounded-circle mx-auto d-block" alt="...">
-                            <!-- <p>The first step toward success is taken when you refuse to be a captive of the environment in which you first find yourself. </p> -->
-                            <p class="card-text" ><small class="" >Sr. {{ exco.name }}</small></p>
-                        {% endif %}
-                      </div>
-                      <div class="bg"></div>
-                    </div> <!-- end card -->
-                </div>
-                    <!-- <div class="col-sm-2"> -->
-                        <!-- <div class="exco_img_dp" style="background-color: grey; margin: 5px;">
-                            <img id="exco_photo" src="../../static/images/KSM_default.jpg" 
-                            style=" margin:auto; height: 140px;"  class="rounded-circle" alt="...">
-                        </div> -->
-                        
-                        <!-- <div id="exco_img_card" class="card mb-3 bg-success" >
-                            <div class="row no-gutters">
-                                <div class="col-md-12">
-                                    <img id="exco_photo" src="../../static/images/KSM_default.jpg" class="card-img" alt="...">
-                                </div>
+                    <div class="col-4">
+                        <div class="quotes">
+                            <div class="box box1">
+                                {% if exco.where == "KSM" %}
+                                    <img id="exco_photo" src="../../static/vgcsc/images/KSM_default.jpg" 
+                                        class="rounded-circle mx-auto d-block" alt="...">
+                                <!-- <p>The first step toward success is taken when you refuse to be a captive of the environment in which you first find yourself. </p> -->
+                                    <p class="card-text" ><small class="exco_name" >WB. {{ exco.name }} ({{ exco.alias }})</small></p>
+                                {% else %}
+                                {% if exco is None %}
+                                    <h6>No Record</h6>
+                                {% endif %}
+                                    <img id="exco_photo" src="../../static/vgcsc/images/LSM_Default.jpg" 
+                                        class="rounded-circle mx-auto d-block" alt="...">
+                                    <!-- <p>The first step toward success is taken when you refuse to be a captive of the environment in which you first find yourself. </p> -->
+                                    <p class="card-text" ><small class="" >Sr. {{ exco.name }}</small></p>
+                                {% endif %}
                             </div>
-                            <div class="row no-gutters">
-                                <div class="col-md-12">
-                                    <div class="card-body">
-                                    <p class="card-title">{{ exco.post }}</p>
-                                    <p class="card-text"><small class="">WB. {{ exco.name }}</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                    <!-- </div> -->
+                            <div class="bg"></div>
+                            
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
          </div> <!--end card-body -->
-    </div> <!--end card-body -->
-        <!-- <div class="row">
-                <h3 id="exco_head" class="card mb-3"></h3>
-        </div> -->
-        
+    </div> <!--end card -->
     {% endif %}
 
     <!-- <div class="card bg-dark text-white">

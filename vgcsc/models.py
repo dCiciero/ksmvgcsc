@@ -4,7 +4,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-# lead@devpro.org/goo123
+# lead@devpro.org/goo123; sysadmin/0gaga@22
 
 class Access(UserMixin, db.Model):
     __tablename__="access"

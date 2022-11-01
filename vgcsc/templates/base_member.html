@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
 <title>{% block title %}{% endblock %} - Knights of St. Mulumba VGC SC</title>
-<link rel="stylesheet" href="{{ url_for('.static', filename='vgcsc/css/bootstrap4/bootstrap.min.css') }}">
+<!-- <link rel="stylesheet" href="{#{ url_for('.static', filename='vgcsc/css/bootstrap4/bootstrap.min.css') }#}"> -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <link rel="stylesheet" href="{{ url_for('.static', filename='vgcsc/css/font-awesome.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('.static', filename='vgcsc/css/jquery.bxslider.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='vgcsc/css/isotope.css') }}" media="screen" />
@@ -42,7 +44,7 @@
                       <li class="navbar-item" ><a class="nav-link py-0" href="{{ url_for('directory') }}">Members Directory</a></li>
                       <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle py-0" href="#" id="galleryDropdown" role="button" 
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Setups
                         </a>
                         <div class="dropdown-menu" aria-labelledby="galleryDropdown">
@@ -98,9 +100,9 @@
     
     {% for category, message in get_flashed_messages(with_categories=true) %}
     <div id="admin-alert" class="alert alert-{{category}} alert-dismissible fade show" 
-      data-fade="3000" data-dismiss="alert" role="alert">
+      data-bs-fade="3000" data-bs-dismiss="alert" role="alert">
       {{ message }}
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -286,7 +288,10 @@
 <script src="{{ url_for('.static', filename='vgcsc/js/jquery-2.1.1.min.js') }}"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <!-- <script src="{{ url_for('.static', filename='vgcsc/js/bootstrap.min.js') }}"></script> -->
-<script src="{{ url_for('.static', filename='vgcsc/js/bootstrap4/bootstrap.min.js') }}"></script>
+<!-- <script src="{#{ url_for('.static', filename='vgcsc/js/bootstrap4/bootstrap.min.js') }#}"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" \
+        crossorigin="anonymous"></script>
 <script src="{{ url_for('.static', filename='vgcsc/js/wow.min.js') }}"></script>
 <script src="{{ url_for('.static', filename='vgcsc/js/fancybox/jquery.fancybox.pack.js') }}"></script>
 <script src="{{ url_for('.static', filename='vgcsc/js/jquery.easing.1.3.js') }}"></script>

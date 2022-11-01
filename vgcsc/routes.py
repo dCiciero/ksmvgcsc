@@ -52,6 +52,8 @@ def index():
                 tortor odio convallis risus, sit amet ornare massa est eget lectus.\
                 Phasellus convallis quam quis ligula efficitur euismod. Duis venenatis sed sapien ut blandit.\
                 Nam sed felis ultrices, venenatis lorem ut, sollicitudin tortor. Curabitur pretium tristique lobortis."
+    
+    # return render_template('vgcsc/index.html', history=history)
     return render_template('vgcsc/index.html', news_feed=news_feed, 
                             gallery_options=getGalleryOptions(), carousel=carousel, history=history)
 
@@ -89,11 +91,14 @@ def membership():
         else:
             user_email = current_user.email
             # print(current_user.email)
+            # user = Member.query.filter_by(email=user_email.lower()).first()
+            memba = []
             memberlisting = Member.query.all()
             for member in memberlisting:
                 member.email = member.email.strip().lower()
                 if member.email == user_email:
                     memba = member
+                
             # print(f'Current user is {current_user.id}')
             # print(f'member is {member}')
             return render_template("vgcsc/members.html", member=memba)
@@ -108,9 +113,9 @@ def exco(option):
     # print(f"{option}")
     # return f"{option}"
     excos = Executive.query.filter_by(where=f"{option}")
-    return render_template('vgcsc/executives1.html', excos=excos, gallery_options=getGalleryOptions())
+    return render_template('vgcsc/executives1.html', excos=excos, option=option, gallery_options=getGalleryOptions())
 
-# @app.route('/history')
+# @app.route('/history') 
 # def history():
 #     render_template('vgcsc/history.html')
 
@@ -156,12 +161,13 @@ def uploads():
                 print(filename)
                 if not os.path.isdir(os.path.join(app.config['UPLOAD_FOLDER'])):
                     os.mkdir(os.path.join(app.config['UPLOAD_FOLDER']))
-                path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                if os.path.exists(path):
+                file_name_in_folder = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                print(f"file_name_in_folder {file_name_in_folder}")
+                if os.path.exists(file_name_in_folder):
                     flash("File has been uploaded previously", "warning")
                     return redirect(url_for('uploads'))
-                img.save(path)
-                photo = PhotoGallery(name=filename,caption=caption, path=path, display_type=fototype,
+                img.save(file_name_in_folder)
+                photo = PhotoGallery(name=filename,caption=caption, path=file_name_in_folder, display_type=fototype,
                 gallery_options=galleryType)
                 db.session.add(photo)
                 db.session.commit()

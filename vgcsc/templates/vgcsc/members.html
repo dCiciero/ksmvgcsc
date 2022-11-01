@@ -4,8 +4,8 @@
 {% block content %}
     <div id="member_page" class="card">
         <div class="card-body">
-            <h6>Member zone - <span>{{ member.first_name + " "+ member.other_names+ " "+  member.last_name }}</span> </h6>
             {% if member %}
+            <h6>Member zone - <span>{{ member.first_name + " "+ member.other_names+ " "+  member.last_name }}</span> </h6>
             <table class="table table-sm table-bordered table-hover table-striped ">
                 <caption><a class="btn btn-sm btn-primary" href="{{ url_for('editDirectory', opt = member.id) }}" role="button" >Edit Record</a></caption>
                 <thead class="thead-dark">
